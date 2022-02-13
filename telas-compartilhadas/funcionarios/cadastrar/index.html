@@ -35,52 +35,52 @@
             </div>
             <div class="inputsContainer">
                 <h2>Valor</h2>
-                <input type="text" />
-            </div>
-            <div class="inputsContainer">
-                <h2>RG</h2>
-                <input type="text" />
-            </div>
-            <div class="inputsContainer">
-                <h2>CPF</h2>
-                <input type="text" />
-            </div>
-            <div class="inputsContainer">
-                <h2>Celular</h2>
-                <input type="text" />
-            </div>
-            <div class="inputsContainer">
-                <h2>Pis</h2>
                 <input type="text" required />
             </div>
             <div class="inputsContainer">
+                <h2>RG</h2>
+                <input type="number" onkeypress="return onlynumber();" placeholder="Apenas números" required />
+            </div>
+            <div class="inputsContainer">
+                <h2>CPF</h2>
+                <input type="number" onkeypress="return onlynumber();" placeholder="Apenas números" required />
+            </div>
+            <div class="inputsContainer">
+                <h2>Celular</h2>
+                <input type="text" required />
+            </div>
+            <div class="inputsContainer">
+                <h2>Pis</h2>
+                <input type="number" onkeypress="return onlynumber();" placeholder="Apenas números" required />
+            </div>
+            <div class="inputsContainer">
                 <h2>Pagamento</h2>
-                <input class="pagamentoInput" type="text" style="width: 410px" />
+                <input class="pagamentoInput" type="text" style="width: 410px" required />
                 <select class="select" name="select">
             <option value="pix">Pix</option>
             <option class="contaSelect" value="conta">Conta</option>
           </select>
             </div>
-            <div class="inputsContainer" id="pagamentoPix">
+            <div class="inputsContainer" id="pagamentoPix" required>
                 <h2>Pix</h2>
                 <input type="text" />
             </div>
             <div class="contaPagamento" style="display: none">
                 <div class="inputsContainer">
                     <h2>Banco</h2>
-                    <input type="text" />
+                    <input type="text" required />
                 </div>
                 <div class="inputsContainer">
                     <h2>Agência</h2>
-                    <input type="text" />
+                    <input type="text" required />
                 </div>
                 <div class="inputsContainer">
                     <h2>Conta</h2>
-                    <input type="text" />
+                    <input type="text" required />
                 </div>
                 <div class="inputsContainer">
                     <h2>Operação</h2>
-                    <input type="text" />
+                    <input type="text" required />
                 </div>
             </div>
         </div>
@@ -90,6 +90,19 @@
         <a class="voltarBTN" href="../index.html">Voltar</a>
     </div>
     <script src="./script.js"></script>
+    <script>
+        function onlynumber(evt) {
+            var theEvent = evt || window.event;
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+            //var regex = /^[0-9.,]+$/;
+            var regex = /^[0-9.]+$/;
+            if (!regex.test(key)) {
+                theEvent.returnValue = false;
+                if (theEvent.preventDefault) theEvent.preventDefault();
+            }
+        }
+    </script>
 </body>
 
 </html>

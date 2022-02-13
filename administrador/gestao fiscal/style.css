@@ -1,0 +1,13 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+body {
+    background-color: #32beb0;
+    background-image: linear-gradient(0deg, #32beb0 13%, #0aa695 47%, #023f39 100%);
+}

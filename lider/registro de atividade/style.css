@@ -1,0 +1,53 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+body {
+    background-color: #32beb0;
+    background-image: linear-gradient(0deg, #32beb0 13%, #0aa695 47%, #023f39 100%);
+}
+
+.titulo {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mesAtual h2 {
+    background-color: whitesmoke;
+    color: #0aa695;
+    padding: 10px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    border: 3px solid black
+}
+
+.calendario {
+    text-align: center;
+}
+
+.sairBTN {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 100px;
+}
+
+.sairBTN a {
+    background-color: whitesmoke;
+    color: #0aa695;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-bottom: 10px;
+}

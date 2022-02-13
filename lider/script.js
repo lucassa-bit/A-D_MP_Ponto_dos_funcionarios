@@ -4,13 +4,13 @@ const folhaBTN = document.querySelector('.folhaBTN')
 
 
 funcionariosBTN.addEventListener('click', e => {
-    funcionariosBTN.setAttribute('href', './funcionarios/index.html')
+    funcionariosBTN.setAttribute('href', '../telas-compartilhadas/funcionarios/index.html')
 })
 
 registroBTN.addEventListener('click', e => {
-    registroBTN.setAttribute('href', './registro de atividade/index.html')
+    registroBTN.setAttribute('href', '../telas-compartilhadas/registro de atividade/index.html')
 })
 
 folhaBTN.addEventListener('click', e => {
-    folhaBTN.setAttribute('href', './folha de pagamento/index.html')
+    folhaBTN.setAttribute('href', '../telas-compartilhadas/folha de pagamento/index.html')
 })

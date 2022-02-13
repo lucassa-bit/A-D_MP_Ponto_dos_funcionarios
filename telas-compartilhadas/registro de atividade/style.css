@@ -3,13 +3,12 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Roboto Mono', monospace;
-    color: whitesmoke;
+    color: #0AA695;
     text-decoration: none;
 }
 
 body {
-    background-color: #32beb0;
-    background-image: linear-gradient(0deg, #32beb0 13%, #0aa695 47%, #023f39 100%);
+    background: linear-gradient(to top, #dfe9f3 0%, white 100%);
 }
 
 .titulo {
@@ -24,8 +23,8 @@ body {
 }
 
 .mesAtual h2 {
-    background-color: whitesmoke;
-    color: #0aa695;
+    background-color: #0AA695;
+    color: whitesmoke;
     padding: 10px;
     text-decoration: none;
     margin-bottom: 10px;
@@ -44,8 +43,8 @@ body {
 }
 
 .sairBTN a {
-    background-color: whitesmoke;
-    color: #0aa695;
+    background-color: #0AA695;
+    color: whitesmoke;
     padding: 10px;
     border-radius: 10px;
     text-decoration: none;

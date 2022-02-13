@@ -4,9 +4,9 @@ const registroBTN = document.querySelector('.registroBTN')
 
 
 funcionariosBTN.addEventListener('click', e => {
-    funcionariosBTN.setAttribute('href', '../lider/funcionarios/index.html')
+    funcionariosBTN.setAttribute('href', '../telas-compartilhadas/funcionarios/index.html')
 })
 
 registroBTN.addEventListener('click', e => {
-    registroBTN.setAttribute('href', '../lider/registro de atividade/index.html')
+    registroBTN.setAttribute('href', '../telas-compartilhadas/registro de atividade/index.html')
 })

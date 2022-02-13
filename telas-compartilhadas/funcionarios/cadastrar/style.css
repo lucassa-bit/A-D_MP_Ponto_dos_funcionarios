@@ -89,3 +89,34 @@ select option {
     border-radius: 10px;
     text-decoration: none;
 }
+
+@media screen and (max-width: 913px) {
+    .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-left: -40px;
+    }
+    .inputsContainer {
+        display: flex;
+        margin: 10px 0;
+        align-items: center;
+        padding: 10px;
+        font-size: 12px;
+        justify-content: center;
+    }
+    .inputsContainer input {
+        max-width: 250px;
+    }
+    .vinculoInput {
+        width: 140px !important;
+    }
+    .pagamentoInput {
+        width: 170px !important;
+    }
+}

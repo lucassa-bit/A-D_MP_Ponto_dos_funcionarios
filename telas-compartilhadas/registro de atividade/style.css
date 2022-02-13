@@ -22,16 +22,7 @@ body {
     align-items: center;
 }
 
-.mesAtual h2 {
-    background-color: #0AA695;
-    color: whitesmoke;
-    padding: 10px;
-    text-decoration: none;
-    margin-bottom: 10px;
-    border: 3px solid black
-}
-
-.calendario {
+.data input {
     text-align: center;
 }
 
@@ -49,4 +40,96 @@ body {
     border-radius: 10px;
     text-decoration: none;
     margin-bottom: 10px;
+}
+
+
+/* innerHTML */
+
+.main2 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.titulos {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+}
+
+.titulos .h3_1 {
+    margin-right: 60px;
+}
+
+.h3_1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.h3_2 {
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px;
+}
+
+.lista_funcionarios {
+    display: flex;
+    align-items: center;
+}
+
+.lista_funcionarios input {
+    padding: 5px;
+}
+
+.checkbox {
+    margin-right: 10px;
+    transform: scale(1.5);
+}
+
+.nome_funcionario {
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 913px) {
+    .titulo {
+        text-align: center;
+        margin: 50px;
+    }
+    .main2 {
+        text-align: center;
+        margin-top: 50px;
+    }
+    .titulos {
+        display: flex;
+        justify-content: end;
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+    .titulos .h3_1 {
+        margin-right: 10px;
+    }
+    .h3_1 {
+        display: flex;
+        flex-direction: column;
+    }
+    .h3_2 {
+        display: flex;
+        flex-direction: column;
+        margin-right: 5px;
+    }
+    .lista_funcionarios {
+        display: flex;
+        align-items: center;
+    }
+    .lista_funcionarios input {
+        padding: 3px;
+        width: 90px;
+    }
+    .checkbox {
+        margin-right: -30px;
+        transform: scale(1.3);
+    }
+    .nome_funcionario {
+        margin-right: 10px;
+        font-size: 14px;
+    }
 }

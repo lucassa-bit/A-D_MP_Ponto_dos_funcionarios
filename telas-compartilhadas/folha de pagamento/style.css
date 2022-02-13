@@ -88,3 +88,31 @@ body {
     border-radius: 10px;
     text-decoration: none;
 }
+
+@media screen and (max-width: 913px) {
+    .datas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .dataInicial {
+        text-align: center;
+        margin-right: 5px;
+        font-size: 14px;
+    }
+    .dataInicial input {
+        width: 150px;
+        margin-top: 5px;
+        text-align: center;
+    }
+    .dataFinal {
+        text-align: center;
+        margin-left: 5px;
+        font-size: 14px;
+    }
+    .dataFinal input {
+        width: 150px;
+        margin-top: 5px;
+        text-align: center;
+    }
+}

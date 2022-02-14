@@ -12,8 +12,11 @@ cadastrar.addEventListener('click', e => {
     const novoNome = document.querySelector('.novoNome').value
     const novoCargo = select.options[select.selectedIndex].value
 
-    fetch('https://flash-point-app.herokuapp.com:8040/api/usuario/create', {
+    fetch('https://flash-point-app.herokuapp.com/api/usuario/create', {
         method: 'Post',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
                 login: novoLogin,
                 senha: novaSenha,
@@ -23,3 +26,5 @@ cadastrar.addEventListener('click', e => {
     }).then(response => response.json())
 
 }) 
+
+

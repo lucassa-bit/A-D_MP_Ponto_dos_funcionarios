@@ -91,6 +91,14 @@ select option {
 }
 
 @media screen and (max-width: 913px) {
+    .titulo {
+        text-align: center;
+        margin: 30px 20px;
+        font-size: 14px;
+    }
+    .titulo h2 {
+        margin-top: 10px;
+    }
     .main {
         display: flex;
         flex-direction: column;
@@ -113,9 +121,12 @@ select option {
     .inputsContainer input {
         max-width: 250px;
     }
-    .vinculoInput {
-        width: 140px !important;
+    .selectVinculo {
+        width: 250px !important;
     }
+    /*  .vinculoInput {
+        width: 140px !important;
+    } */
     .pagamentoInput {
         width: 170px !important;
     }

@@ -55,27 +55,27 @@ cadastrarBTN.addEventListener('click', e => {
                     var resultado =  'Diarista'
                 }
                 const pagamento2 = select.options[select.selectedIndex].value
-                    fetch('https://flash-point-app.herokuapp.com/api/funcionario/edit', {
-                        method: 'Put',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            nome : nome.value,
-                            cargo : cargo.value,
-                            vinculo : resultado,
-                            valor : valor.value,
-                            rg : RG.value,
-                            cpf : CPF.value,
-                            celular : celular.value,
-                            pis : pis.value,
-                            pagamento : pagamento2,
-                            pix : pix.value,
-                            banco : banco.value,
-                            agencia : agencia.value,
-                            conta : conta.value,
-                            operacao : operacao.value,
-                        })
+                fetch('https://flash-point-app.herokuapp.com/api/funcionario/edit', {
+                    method: 'Put',
+                    headers: {
+                         'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nome : nome.value,
+                        cargo : cargo.value,
+                        vinculo : resultado,
+                        valor : valor.value,
+                        rg : RG.value,
+                        cpf : CPF.value,
+                        celular : celular.value,
+                        pis : pis.value,
+                        pagamento : pagamento2,
+                        pix : pix.value,
+                        banco : banco.value,
+                        agencia : agencia.value,
+                        conta : conta.value,
+                        operacao : operacao.value,
+                    })
                     }).then(response => response.json())
             }else {
                 if (vinculo.options[vinculo.selectedIndex].value === 'Líder'){
@@ -120,39 +120,3 @@ cadastrarBTN.addEventListener('click', e => {
 
 })
 
-/* 
-fetch('https://flash-point-app.herokuapp.com/api/funcionario/findAll', {
-    method: 'Get',
-}).then(response => response.json()).then(usuarios => {
-    usuarios.map((val) => {
-        if (val.rg === RG.value && val.cpf === CPF.value){
-                fetch('https://flash-point-app.herokuapp.com/api/funcionario/edit', {
-                    method: 'Put',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        nome : nome.value,
-                        cargo : cargo.value,
-                        vinculo : vinculo.value,
-                        valor : valor.value,
-                        rg : RG.value,
-                        cpf : CPF.value,
-                        celular : celular.value,
-                        pis : pis.value,
-                        pagamento : pagamento.value,
-                        pix : pix.value,
-                        banco : banco.value,
-                        agencia : agencia.value,
-                        conta : conta.value,
-                        operacao : operacao.value,
-                    })
-                }).then(response => response.json())
-        }else {
-            fetch('https://flash-point-app.herokuapp.com/api/funcionario/create')
-        }
-
-    })
-})
-
- */

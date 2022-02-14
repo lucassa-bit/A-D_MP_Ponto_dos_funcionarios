@@ -28,4 +28,14 @@ data.addEventListener('change', e =>{
 })
 
 
+const salvar = document.querySelector('.salvarBTN')
+const checkbox = document.querySelector('.checkbox')
+
+salvar.addEventListener('click', e => {
+    console.log(checkbox.Checked)
+})
+
+
+
+
 

@@ -3,14 +3,59 @@ const login = document.querySelector('.inputLogin')
 const senha = document.querySelector('.inputSenha')
 
 botao.addEventListener('click', e => {
+
     const login = document.querySelector('.inputLogin')
     const senha = document.querySelector('.inputSenha')
-    const botao = document.querySelector('.botao')
-    if (login.value.toLowerCase() === 'lider' && senha.value === '123') {
+    const botao = document.querySelector('.botao') 
+   
+   
+    fetch('https://flash-point-app.herokuapp.com/api/usuario/all', {
+        method: 'Get',
+    }).then(response => response.json()).then(usuarios => {
+        usuarios.map((val) => {
+            console.log(val.response)
+            if (login.value === 'Admin' && senha.value === 'admin123') {
+                botao.setAttribute('href', './administrador/index.html')
+                login = ''
+                senha = ''
+                
+            }
+             /*
+            if(login === val.login && senha === val.password){
+                if (val.cargo === 'ADMIN'){
+                    botao.setAttribute('href', './administrador/index.html')
+                }
+                else if(val.cargo === 'LIDER'){
+                    botao.setAttribute('href', './lider/index.html')
+                }
+                else if(val.cargo === 'APONTADOR'){
+                    botao.setAttribute('href', './apontador-fiscal/index.html')
+                }
+                login = ''
+                senha = ''
+            }   else {
+                alert("Erro! Veja se a senha e o login estão certos")
+                login = ''
+                senha = ''
+
+            } */
+
+        })
+    })
+    
+    
+/*     if (login.value === 'admin' && senha.value === 'admin123') {
         botao.setAttribute('href', './lider/index.html')
         login = ''
         senha = ''
-    } else if (login.value.toLowerCase() === 'admin' && senha.value === '123') {
+        return
+  
+  
+} */
+
+})
+
+ /*    } else if (login.value.toLowerCase() === 'admin' && senha.value === '123') {
         botao.setAttribute('href', './administrador/index.html')
         login = ''
         senha = ''
@@ -19,7 +64,5 @@ botao.addEventListener('click', e => {
         login = ''
         senha = ''
 
-    }
+    } */
 
-  
-})

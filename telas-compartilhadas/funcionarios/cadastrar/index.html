@@ -11,47 +11,49 @@
 <body>
     <div class="titulo">
         <h1>Cadastrar ou editar novo funcionário</h1>
+        <h2>
+            Caso o usuário já exista de acordo com CPF e RG, ele será editado. Caso contrário será cadastrado
+        </h2>
     </div>
     <section class="main">
         <div class="container">
             <div class="inputsContainer">
                 <h2>Nome</h2>
-                <input type="text" required />
+                <input class="nome" type="text" required />
             </div>
             <div class="inputsContainer">
                 <h2>Cargo</h2>
-                <input type="text" required />
+                <input class="cargo" type="text" required />
             </div>
             <div class="inputsContainer">
                 <h2>Vinculo</h2>
-                <input class="vinculoInput" type="text" style="width: 380px" />
-                <select name="select">
-            <option value="">Líder</option>
-            <option value="">CLT</option>
-            <option value="">MEI</option>
-            <option value="">Flutuante</option>
-            <option value="">Diarista</option>
+                <select class="selectVinculo" name="select" style="width: 490px">
+            <option value="Líder">Líder</option>
+            <option value="CLT">CLT</option>
+            <option value="MEI">MEI</option>
+            <option value="Flutuante">Flutuante</option>
+            <option value="Diarista">Diarista</option>
           </select>
             </div>
             <div class="inputsContainer">
                 <h2>Valor</h2>
-                <input type="text" required />
+                <input class="valor" type="text" required />
             </div>
             <div class="inputsContainer">
                 <h2>RG</h2>
-                <input type="number" onkeypress="return onlynumber();" placeholder="Apenas números" required />
+                <input class="RG" type="number" onkeypress="return onlynumber();" placeholder="Apenas números" required />
             </div>
             <div class="inputsContainer">
                 <h2>CPF</h2>
-                <input type="number" onkeypress="return onlynumber();" placeholder="Apenas números" required />
+                <input class="CPF" type="number" onkeypress="return onlynumber();" placeholder="Apenas números" required />
             </div>
             <div class="inputsContainer">
                 <h2>Celular</h2>
-                <input type="text" required />
+                <input class="celular" type="text" required />
             </div>
             <div class="inputsContainer">
                 <h2>Pis</h2>
-                <input type="number" onkeypress="return onlynumber();" placeholder="Apenas números" required />
+                <input class="pis" type="number" onkeypress="return onlynumber();" placeholder="Apenas números" required />
             </div>
             <div class="inputsContainer">
                 <h2>Pagamento</h2>
@@ -63,24 +65,24 @@
             </div>
             <div class="inputsContainer" id="pagamentoPix" required>
                 <h2>Pix</h2>
-                <input type="text" />
+                <input class="pix" type="text" />
             </div>
             <div class="contaPagamento" style="display: none">
                 <div class="inputsContainer">
                     <h2>Banco</h2>
-                    <input type="text" required />
+                    <input class="banco" type="text" required />
                 </div>
                 <div class="inputsContainer">
                     <h2>Agência</h2>
-                    <input type="text" required />
+                    <input class="agencia" type="text" required />
                 </div>
                 <div class="inputsContainer">
                     <h2>Conta</h2>
-                    <input type="text" required />
+                    <input class="conta" type="text" required />
                 </div>
                 <div class="inputsContainer">
                     <h2>Operação</h2>
-                    <input type="text" required />
+                    <input class="operacao" type="text" required />
                 </div>
             </div>
         </div>

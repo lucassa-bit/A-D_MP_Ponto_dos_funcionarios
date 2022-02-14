@@ -50,3 +50,11 @@ body {
     border-radius: 10px;
     text-decoration: none;
 }
+
+
+/* innerHTML */
+
+.lista_funcionarios {
+    padding: 10px;
+    font-size: 20px;
+}

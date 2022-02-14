@@ -1,3 +1,12 @@
+const botao = document.querySelector('.botao')
+/* 
+fetch('https://flash-point-app.herokuapp.com/api/usuario/me', {
+    method: 'Get',
+    headers: {'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY0NDkzMTg5Mn0.X0-goPFj-5_siI3hyQVak4-rMiUmojBxtAaXV2cefRHajXCY6CFXic4x0EfnNjFx9buv5bRuh2wT6GdpvOixlA'}
+}).then(response => response.json()).then(usuario => {
+    console.log(usuario.cargo)
+}) */
+
 document.querySelector('.innerHTML').innerHTML = `
 <div class="main2">
     <div class="titulos">

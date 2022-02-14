@@ -1,7 +1,8 @@
 /* const novoLogin = document.querySelector('.novoLogin')
 const novaSenha = document.querySelector('.novaSenha')
-const novoNome = document.querySelector('.novoNome')
-const novoCargo = document.querySelector('.novoCargo') */
+const novoNome = document.querySelector('.novoNome') */
+/* const novoCargo = document.querySelector('.novoCargo') */
+
 const select = document.querySelector('#select')
 const cadastrar = document.querySelector('.botaoCadastrar')
 
@@ -19,10 +20,6 @@ cadastrar.addEventListener('click', e => {
                 nome: novoNome,
                 cargo: novoCargo
             })
-    }).then(response => response.json()).then(data => data.s)
+    }).then(response => response.json())
 
 }) 
-
-
-
-

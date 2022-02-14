@@ -127,6 +127,9 @@ select option {
     /*  .vinculoInput {
         width: 140px !important;
     } */
+    .select {
+        width: 250px !important;
+    }
     .pagamentoInput {
         width: 170px !important;
     }

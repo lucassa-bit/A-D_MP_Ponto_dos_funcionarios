@@ -10,7 +10,7 @@ botao.addEventListener('click', e => {
         botao.setAttribute('href', './lider/index.html')
         login = ''
         senha = ''
-    } else if (login.value.toLowerCase() === 'administrador' && senha.value === '123') {
+    } else if (login.value.toLowerCase() === 'admin' && senha.value === '123') {
         botao.setAttribute('href', './administrador/index.html')
         login = ''
         senha = ''
@@ -21,4 +21,5 @@ botao.addEventListener('click', e => {
 
     }
 
+  
 })

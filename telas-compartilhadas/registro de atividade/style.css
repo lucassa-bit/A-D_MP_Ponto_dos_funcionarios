@@ -24,16 +24,32 @@ body {
 
 .data input {
     text-align: center;
+    padding: 10px;
+    margin-top: 20px;
 }
 
-.sairBTN {
+.botoes {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 100px;
 }
 
-.sairBTN a {
+.botoes a {
+    width: 100px;
+    text-align: center;
+}
+
+.salvarBTN {
+    background-color: #0AA695;
+    color: whitesmoke;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.voltarBTN {
     background-color: #0AA695;
     color: whitesmoke;
     padding: 10px;
@@ -87,6 +103,31 @@ body {
 
 .nome_funcionario {
     margin-right: 10px;
+}
+
+.resultado {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0 0 0;
+    align-items: center;
+}
+
+.aprovar {
+    display: flex;
+    align-items: center;
+}
+
+.revisar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.textoRevisao textarea {
+    width: 300px;
+    height: 150px;
+    font-size: 18px;
+    padding: 10px;
 }
 
 @media screen and (max-width: 913px) {

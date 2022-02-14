@@ -18,15 +18,7 @@ const operacao = document.querySelector('.operacao')
 
 const cadastrarBTN = document.querySelector('.cadastrarBTN')
 
-/* const teste = cadastrarBTN.addEventListener('click', e => {
-    const resultado =  vinculo.options[vinculo.selectedIndex].value
-    return resultado.value
-    
-})
 
-
-console.log(teste)
- */
 
 select.addEventListener('change', e => {
     if (e.target.value === 'conta'){

@@ -16,11 +16,30 @@
         <div class="listaFuncionarios"></div>
         <div class="botoes">
             <a class="cadastrarBTN" href="#">Cadastrar</a>
-            <a class="voltarBTN" href="../../lider/index.html">Voltar</a>
+            <a class="voltarBTN">Voltar</a>
         </div>
     </section>
-
     <script src="./script.js"></script>
+    <script>
+        const voltar = document.querySelector(".voltarBTN");
+
+        voltar.addEventListener("click", (e) => {
+            fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
+                    method: "Get",
+                    headers: {
+                        Accept: "application/json",
+                        Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                })
+                .then((response) => response.json())
+                .then((usuario) => {
+                    voltar.setAttribute(
+                        "href",
+                        "../../" + usuario.cargo + "/index.html"
+                    );
+                });
+        });
+    </script>
 </body>
 
 </html>

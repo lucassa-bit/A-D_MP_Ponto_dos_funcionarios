@@ -11,7 +11,6 @@ botao.addEventListener('click', e => {
 
     const login = document.querySelector('.inputLogin')
     const senha = document.querySelector('.inputSenha')
-    const botao = document.querySelector('.botao')
     senha.setAttribute("type", "password");
 
     const data = {
@@ -43,17 +42,18 @@ botao.addEventListener('click', e => {
                 document.querySelector('.inputSenha').value = '';
 
                 if (test.cargo === 'ADMIN') {
-                    window.location.href = './administrador/index.html';
+                    window.location.href = './ADMIN/index.html';
                 } else if (test.cargo === 'LIDER') {
-                    window.location.href = './lider/index.html';
+                    window.location.href = './LIDER/index.html';
                 } else if (test.cargo === 'APONTADOR') {
-                    window.location.href = './apontador-fiscal/index.html';
+                    window.location.href = './APONTADOR/index.html';
                 }
             })
             .catch(function(error) {
                 console.log(error);
             }))
         .catch(function(error) {
-            console.log(error);
+            console.log(error)
+           
         })
 });

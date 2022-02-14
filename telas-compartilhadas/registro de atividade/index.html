@@ -30,11 +30,31 @@
         </div>
         <div class="botoes">
             <a href="" class="salvarBTN">salvar</a>
-            <a href="../../lider/index.html" class="voltarBTN">Voltar</a>
+            <a class="voltarBTN">Voltar</a>
         </div>
     </section>
 
     <script src="./script.js"></script>
+    <script>
+        const voltar = document.querySelector(".voltarBTN");
+
+        voltar.addEventListener("click", (e) => {
+            fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
+                    method: "Get",
+                    headers: {
+                        Accept: "application/json",
+                        Authorization: "Bearer " + localStorage.getItem("token"),
+                    },
+                })
+                .then((response) => response.json())
+                .then((usuario) => {
+                    voltar.setAttribute(
+                        "href",
+                        "../../" + usuario.cargo + "/index.html"
+                    );
+                });
+        });
+    </script>
 </body>
 
 </html>

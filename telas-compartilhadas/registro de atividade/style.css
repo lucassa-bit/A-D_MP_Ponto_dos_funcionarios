@@ -103,6 +103,7 @@ body {
 
 .nome_funcionario {
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .resultado {

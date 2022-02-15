@@ -7,8 +7,8 @@ data.addEventListener('change', e =>{
     fetch('https://flash-point-app.herokuapp.com/api/ponto/findByDate?data=' + teste ,{
     method: 'Get',
     headers: {'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY0NDkzMTg5Mn0.X0-goPFj-5_siI3hyQVak4-rMiUmojBxtAaXV2cefRHajXCY6CFXic4x0EfnNjFx9buv5bRuh2wT6GdpvOixlA'}
-    }).then(response => response.json()).then(funcionarios => {
-        document.querySelector('.innerHTML').innerHTML = `  `        
+    }).then(response => response.json()).then(funcionarios => {  
+        document.querySelector('.innerHTML').innerHTML = ``      
         funcionarios.map((val) => {
             document.querySelector('.innerHTML').innerHTML += `
             <div class="main2">
@@ -23,19 +23,7 @@ data.addEventListener('change', e =>{
                     <input type="number" placeholder="Hora extra 100%">
                 </ul> 
             </div>  `        
-        })    
-    })
+        }) 
+       
+    }) 
 })
-
-
-const salvar = document.querySelector('.salvarBTN')
-const checkbox = document.querySelector('.checkbox')
-
-salvar.addEventListener('click', e => {
-    console.log(checkbox.Checked)
-})
-
-
-
-
-

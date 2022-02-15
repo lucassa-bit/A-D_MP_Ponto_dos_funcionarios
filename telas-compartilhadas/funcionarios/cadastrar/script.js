@@ -57,7 +57,8 @@ cadastrarBTN.addEventListener('click', e => {
                 fetch('https://flash-point-app.herokuapp.com/api/funcionario/edit', {
                     method: 'Put',
                     headers: {
-                         'Content-Type': 'application/json'
+                         'Content-Type': 'application/json',
+                         'Authorization': 'Bearer ' + localStorage.getItem("token")
                     },
                     body: JSON.stringify({
                         nome : nome.value,
@@ -92,7 +93,8 @@ cadastrarBTN.addEventListener('click', e => {
                 fetch('https://flash-point-app.herokuapp.com/api/funcionario/create', {
                     method: 'Post',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + localStorage.getItem("token")
                     },
                     body: JSON.stringify({
                         nome : nome.value,

@@ -104,7 +104,7 @@ body {
 
 .nome_funcionario {
     margin-right: 10px;
-    cursor: pointer;
+    font-size: 24px;
 }
 
 .resultado {
@@ -112,6 +112,7 @@ body {
     flex-direction: column;
     padding: 20px 0 0 0;
     align-items: center;
+    margin-top: 50px;
 }
 
 .aprovar {
@@ -120,10 +121,18 @@ body {
     margin-bottom: 5px;
 }
 
+.aprovar h3 {
+    margin-left: 5px;
+}
+
 .revisar {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
+}
+
+.revisar h3 {
+    margin-left: 5px;
 }
 
 .textoRevisao textarea {
@@ -131,6 +140,14 @@ body {
     height: 150px;
     font-size: 18px;
     padding: 10px;
+}
+
+.informacoesExtras {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 2em rgb(12, 10, 1);
+    margin-top: 20px;
+    align-items: center;
 }
 
 @media screen and (max-width: 913px) {
@@ -175,6 +192,6 @@ body {
     }
     .nome_funcionario {
         margin-right: 10px;
-        font-size: 14px;
+        font-size: 22px;
     }
 }

@@ -1,6 +1,3 @@
-
-
-
 document.querySelector('.funcionarios').innerHTML = `
 <div class="containerFuncionarios">
     <ul class="lista_funcionarios">

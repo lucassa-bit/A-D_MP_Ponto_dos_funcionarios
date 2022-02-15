@@ -5,11 +5,11 @@ data.addEventListener('change', e =>{
     teste =  teste.split('-').reverse().join('/')
     fetch('https://flash-point-app.herokuapp.com/api/ponto/findByDate?data=' + teste ,{
     method: 'Get',
-    headers: {'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY0NDkzMTg5Mn0.X0-goPFj-5_siI3hyQVak4-rMiUmojBxtAaXV2cefRHajXCY6CFXic4x0EfnNjFx9buv5bRuh2wT6GdpvOixlA'}
-    }).then(async (response => response.json())).then(funcionarios => {  
-        document.querySelector('.innerHTML').innerHTML = ''      
+    headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")
+    }
+    }).then(response => response.json()).then(funcionarios => {  
+        document.querySelector('.innerHTML').innerHTML = ''    
         funcionarios.map((val) => {
-          /*   console.log(val.nome) */
             document.querySelector('.innerHTML').innerHTML += `
             <div class="main2">
                 <div class="titulos">
@@ -18,17 +18,35 @@ data.addEventListener('change', e =>{
                 </div>
                 <ul class="lista_funcionarios">
                     <input class="checkbox"type="checkbox">
-                    <h2 class="nome_funcionario">` + val.empregado.nome + `</h2>
+                    <div style="cursor:pointer;" class="nome_funcionario">` + val.empregado.nome + `</div>
                     <input class="horaExtra50" type="number" placeholder="Hora extra 50%">
                     <input class="horaExtra100" type="number" placeholder="Hora extra 100%">
                 </ul> 
-            </div>  `        
+                <div class="informacoesExtras" style="display: block;">
+                    <h3>Nome: ` + val.empregado.nome +`</h3>
+                    <h3>Cargo: ` + val.empregado.cargo +`</h3>
+                    <h3>Vínculo: ` + val.empregado.vinculo +`</h3>
+                    <h3>Valor: ` + val.empregado.valor +`</h3>
+                    <h3>RG: ` + val.empregado.rg +`</h3>
+                    <h3>CPF: ` + val.empregado.cpf +`</h3>
+                    <h3>Celular: ` + val.empregado.celular +`</h3>
+                    <h3>Pis: ` + val.empregado.pis +`</h3>
+                    <h3>Pagamento: ` + val.empregado.pagamento +`</h3>
+                </div>
+            </div>  `   
         }) 
-/* 
-        const horaExtra50 = document.querySelector('.horaExtra50').value
-        const horaExtra100 = document.querySelector('.horaExtra100').value */
 
-
-       
+        const nomesFuncionarios = document.querySelectorAll('.nome_funcionario')
+        for (var i = 0; i < nomesFuncionarios.length; i++) {
+          console.log(nomesFuncionarios.length)
+          nomesFuncionarios[i].addEventListener('click', e =>{
+              if (e.target.querySelector('.informacoesExtras').style.display == 'block'){
+                  e.target.querySelector('.informacoesExtras').style.display == 'none'
+              }else {
+                  e.target.querySelector('.informacoesExtras').style.display == 'block'
+              }
+          })   
+        } 
     }) 
+ 
 })

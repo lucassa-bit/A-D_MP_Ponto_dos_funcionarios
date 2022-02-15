@@ -90,6 +90,7 @@ body {
 .lista_funcionarios {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 }
 
 .lista_funcionarios input {
@@ -116,6 +117,7 @@ body {
 .aprovar {
     display: flex;
     align-items: center;
+    margin-bottom: 5px;
 }
 
 .revisar {
@@ -161,6 +163,7 @@ body {
     .lista_funcionarios {
         display: flex;
         align-items: center;
+        justify-content: flex-end;
     }
     .lista_funcionarios input {
         padding: 3px;

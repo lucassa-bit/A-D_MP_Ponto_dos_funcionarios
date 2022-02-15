@@ -1,4 +1,3 @@
-const botao = document.querySelector('.botao')
 const data = document.querySelector('.data')
 
 data.addEventListener('change', e =>{
@@ -8,12 +7,12 @@ data.addEventListener('change', e =>{
     method: 'Get',
     headers: {'Authorization' : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJBZG1pbiIsImV4cCI6MTY0NDkzMTg5Mn0.X0-goPFj-5_siI3hyQVak4-rMiUmojBxtAaXV2cefRHajXCY6CFXic4x0EfnNjFx9buv5bRuh2wT6GdpvOixlA'}
     }).then(response => response.json()).then(funcionarios => {  
-        document.querySelector('.innerHTML').innerHTML = ``      
+        document.querySelector('.innerHTML').innerHTML = ''      
         funcionarios.map((val) => {
             document.querySelector('.innerHTML').innerHTML += `
             <div class="main2">
                 <div class="titulos">
-                    <h3 class="h3_1">Hora extra <span>50%</span> </h3>
+                    <h3 class="h3_1">Hora extra<span>50%</span></h3>
                     <h3 class="h3_2">Hora extra<span>100%</span></h3>
                 </div>
                 <ul class="lista_funcionarios">

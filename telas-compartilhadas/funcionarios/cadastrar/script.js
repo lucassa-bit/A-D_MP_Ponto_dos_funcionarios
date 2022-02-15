@@ -6,7 +6,7 @@ const cargo = document.querySelector('.cargo')
 const vinculo = document.querySelector('.selectVinculo')
 const valor = document.querySelector('.valor')
 const RG = document.querySelector('.RG')
-const CPF = document.querySelector('CPF')
+const CPF = document.querySelector('.CPF')
 const celular = document.querySelector('.celular')
 const pis = document.querySelector('.pis')
 /* const pagamento = document.querySelector('.pagamento') */
@@ -43,16 +43,16 @@ cadastrarBTN.addEventListener('click', e => {
     }).then(response => response.json()).then(usuarios => {
         usuarios.map((val) => {
             if (val.rg === RG.value && val.cpf === CPF.value){
-                if (vinculo.options[vinculo.selectedIndex].value === 'Líder'){
-                    var resultado =  'Líder'
+                if (vinculo.options[vinculo.selectedIndex].value === 'LIDER'){
+                    var resultado =  'LIDER'
                 }else if (vinculo.options[vinculo.selectedIndex].value === 'CLT'){
                     var resultado =  'CLT'
                 }else if (vinculo.options[vinculo.selectedIndex].value === 'MEI'){
                     var resultado =  'MEI'
-                }else if (vinculo.options[vinculo.selectedIndex].value === 'Flutuante'){
-                    var resultado =  'Flutuante'
-                }else if (vinculo.options[vinculo.selectedIndex].value === 'Diarista'){
-                    var resultado =  'Diarista'
+                }else if (vinculo.options[vinculo.selectedIndex].value === 'FLUTUANTE'){
+                    var resultado =  'FLUTUANTE'
+                }else if (vinculo.options[vinculo.selectedIndex].value === 'DIARISTA'){
+                    var resultado =  'DIARISTA'
                 }
                 const pagamento2 = select.options[select.selectedIndex].value
                 fetch('https://flash-point-app.herokuapp.com/api/funcionario/edit', {
@@ -78,20 +78,20 @@ cadastrarBTN.addEventListener('click', e => {
                     })
                     }).then(response => response.json())
             }else {
-                if (vinculo.options[vinculo.selectedIndex].value === 'Líder'){
-                    var resultado =  'Líder'
+                if (vinculo.options[vinculo.selectedIndex].value === 'LIDER'){
+                    var resultado =  'LIDER'
                 }else if (vinculo.options[vinculo.selectedIndex].value === 'CLT'){
                     var resultado =  'CLT'
                 }else if (vinculo.options[vinculo.selectedIndex].value === 'MEI'){
                     var resultado =  'MEI'
-                }else if (vinculo.options[vinculo.selectedIndex].value === 'Flutuante'){
-                    var resultado =  'Flutuante'
-                }else if (vinculo.options[vinculo.selectedIndex].value === 'Diarista'){
-                    var resultado =  'Diarista'
+                }else if (vinculo.options[vinculo.selectedIndex].value === 'FLUTUANTE'){
+                    var resultado =  'FLUTUANTE'
+                }else if (vinculo.options[vinculo.selectedIndex].value === 'DIARISTA'){
+                    var resultado =  'DIARISTA'
                 }
                 const pagamento2 = select.options[select.selectedIndex].value
                 fetch('https://flash-point-app.herokuapp.com/api/funcionario/create', {
-                    method: 'Put',
+                    method: 'Post',
                     headers: {
                         'Content-Type': 'application/json'
                     },

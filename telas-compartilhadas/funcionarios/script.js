@@ -11,7 +11,7 @@ fetch('https://flash-point-app.herokuapp.com/api/funcionario/findAll', {
         document.querySelector('.listaFuncionarios').innerHTML += `
         <div class="containerFuncionarios">
             <ul class="lista_funcionarios">
-              <li>` + val.nome  +  `</li> 
+              <li> Nome: ` + val.nome + ` - Cargo: ` + val.cargo +  `</li> 
             </ul> 
         </div>
         `

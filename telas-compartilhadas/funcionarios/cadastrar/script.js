@@ -19,16 +19,15 @@ const operacao = document.querySelector('.operacao')
 const cadastrarBTN = document.querySelector('.cadastrarBTN')
 
 
-
 select.addEventListener('change', e => {
-    if (e.target.value === 'conta'){
+    if (e.target.value === 'CONTA'){
         const contaPagamento = document.querySelector('.contaPagamento')
         const pagamentoPix = document.querySelector('#pagamentoPix')
         contaPagamento.setAttribute('style', 'display: flex')
         pagamentoPix.setAttribute('style', 'display: none')
         return
     }
-    if (e.target.value === 'pix'){
+    if (e.target.value === 'PIX'){
         const contaPagamento = document.querySelector('.contaPagamento')
         const pagamentoPix = document.querySelector('#pagamentoPix')
         contaPagamento.setAttribute('style', 'display:none') 
@@ -41,8 +40,8 @@ cadastrarBTN.addEventListener('click', e => {
     fetch('https://flash-point-app.herokuapp.com/api/funcionario/findAll', {
         method: 'Get',
     }).then(response => response.json()).then(usuarios => {
-        usuarios.map((val) => {
-            if (val.rg === RG.value && val.cpf === CPF.value){
+        var jaExiste = usuarios.some(u => u.cpf === CPF.value && u.rg === RG.value)
+            if (jaExiste){
                 if (vinculo.options[vinculo.selectedIndex].value === 'LIDER'){
                     var resultado =  'LIDER'
                 }else if (vinculo.options[vinculo.selectedIndex].value === 'CLT'){
@@ -77,7 +76,7 @@ cadastrarBTN.addEventListener('click', e => {
                         operacao : operacao.value,
                     })
                     }).then(response => response.json())
-            }else {
+            }else{
                 if (vinculo.options[vinculo.selectedIndex].value === 'LIDER'){
                     var resultado =  'LIDER'
                 }else if (vinculo.options[vinculo.selectedIndex].value === 'CLT'){
@@ -111,12 +110,10 @@ cadastrarBTN.addEventListener('click', e => {
                         conta : conta.value,
                         operacao : operacao.value,
                     })
+
                 }).then(response => response.json())
-                
             }
-
-        })
+        
     })
-
 })
 

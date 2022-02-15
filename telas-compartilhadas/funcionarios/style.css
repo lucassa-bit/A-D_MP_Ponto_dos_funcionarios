@@ -72,6 +72,9 @@ body {
         margin: 50px 10px;
         font-size: 14px;
     }
+    .listaFuncionarios {
+        margin-left: 20px;
+    }
     /* innerHTML */
     .lista_funcionarios {
         font-size: 16px;

@@ -49,10 +49,7 @@
                 })
                 .then((response) => response.json())
                 .then((usuario) => {
-                    voltar.setAttribute(
-                        "href",
-                        "../../" + usuario.cargo + "/index.html"
-                    );
+                    window.location.href = '../../'+usuario.cargo+'/index.html';
                 });
         });
     </script>

@@ -143,11 +143,8 @@ body {
 }
 
 .informacoesExtras {
-    display: flex;
-    flex-direction: column;
     box-shadow: 0 0 2em rgb(12, 10, 1);
     margin-top: 20px;
-    align-items: center;
 }
 
 @media screen and (max-width: 913px) {
@@ -187,11 +184,14 @@ body {
         width: 90px;
     }
     .checkbox {
-        margin-right: -30px;
         transform: scale(1.3);
     }
     .nome_funcionario {
         margin-right: 10px;
-        font-size: 22px;
+        font-size: 18px;
+    }
+    .informacoesExtras {
+        box-shadow: 0 0 2em rgb(12, 10, 1);
+        margin-top: 20px;
     }
 }

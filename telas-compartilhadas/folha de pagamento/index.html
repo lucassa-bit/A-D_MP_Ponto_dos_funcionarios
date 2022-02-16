@@ -17,18 +17,14 @@
         <div class="datas">
             <div class="dataInicial">
                 <h2>Data Inicial</h2>
-                <input type="date" />
+                <input type="date" class="dataInicialInput" />
             </div>
             <div class="dataFinal">
                 <h2>Data Final</h2>
-                <input type="date" />
+                <input type="date" class="dataFinalInput"/>
             </div>
         </div>
         <div class="funcionarios">
-            <h2>t</h2>
-            <h2>t</h2>
-            <h2>t</h2>
-            <h2>t</h2>
         </div>
         <div class="botoes">
             <a class="selecionarBTN" href="#">Selecionar Todos</a>
@@ -36,6 +32,7 @@
             <a class="voltarBTN">Voltar</a>
         </div>
     </section>
+    <script src="./script.js"></script>
     <script>
         const voltar = document.querySelector(".voltarBTN");
 
@@ -49,10 +46,7 @@
                 })
                 .then((response) => response.json())
                 .then((usuario) => {
-                    voltar.setAttribute(
-                        "href",
-                        "../../" + usuario.cargo + "/index.html"
-                    );
+                    window.location.href = '../../'+usuario.cargo+'/index.html';
                 });
         });
     </script>

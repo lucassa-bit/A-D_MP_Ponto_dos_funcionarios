@@ -25,9 +25,20 @@ function exportar() {
     var dataInicialConverted = dataInicialValue.split('-').reverse().join('/')
     var dataFinalConverted = dataFinalValue.split('-').reverse().join('/')
     
+    var token = 'Bearer ' + localStorage.getItem("token");
+
     console.log(dataInicialConverted);
     console.log(dataFinalConverted);
     console.log(selectedIds);
+
+    var url = `https://flash-point-app.herokuapp.com/api/relatorio`;
+    url += `?dataInicial=${dataInicialConverted}`;
+    url += `&dataFinal=${dataInicialConverted}`;
+    url += `&authentication=${token}`;
+    selectedIds.forEach(id => {
+        url += `&ids=${id}`;
+    });
+    window.open(url, '_blank');
 }
 
 var allFuncionarios = [];

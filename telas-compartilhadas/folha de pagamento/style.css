@@ -51,6 +51,17 @@ body {
     text-align: center;
 }
 
+.lista_funcionarios {
+    display: flex;
+    padding: 5px;
+    align-items: center;
+}
+
+.checkbox {
+    margin-right: 10px;
+    transform: scale(1.5);
+}
+
 .botoes {
     display: flex;
     flex-direction: column;

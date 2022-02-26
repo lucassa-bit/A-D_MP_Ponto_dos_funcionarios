@@ -29,6 +29,12 @@ data.addEventListener("change", (e) => {
                             <h4>Cargo: ` +
           val.empregado.cargo +
           `</h4>
+          <h4>CPF: ` +
+          val.empregado.cpf +
+          `</h4>
+          <h4>RG: ` +
+          val.empregado.rg +
+          `</h4>
                         </div>
                     
                     </div>

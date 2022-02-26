@@ -16,6 +16,7 @@ cadastrar.addEventListener("click", (e) => {
     method: "Post",
     headers: {
       "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
     body: JSON.stringify({
       login: novoLogin,

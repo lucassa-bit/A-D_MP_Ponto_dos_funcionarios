@@ -38,6 +38,10 @@ select.addEventListener("change", (e) => {
 cadastrarBTN.addEventListener("click", (e) => {
   fetch("https://flash-point-app.herokuapp.com/api/funcionario", {
     method: "Get",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
   })
     .then((response) => response.json())
     .then((usuarios) => {
@@ -45,6 +49,7 @@ cadastrarBTN.addEventListener("click", (e) => {
         (u) => u.cpf === CPF.value && u.rg === RG.value
       );
       if (jaExiste) {
+        console.table("Já existe");
         if (vinculo.options[vinculo.selectedIndex].value === "LIDER") {
           var resultado = "LIDER";
         } else if (vinculo.options[vinculo.selectedIndex].value === "CLT") {
@@ -61,13 +66,20 @@ cadastrarBTN.addEventListener("click", (e) => {
           var resultado = "DIARISTA";
         }
         const pagamento2 = select.options[select.selectedIndex].value;
+        const idUsuario = usuarios.filter(
+          (u) => u.cpf === CPF.value && u.rg === RG.value
+        )[0].id;
+        console.table(idUsuario);
+
         fetch("https://flash-point-app.herokuapp.com/api/funcionario/edit", {
+          mode: "no-cors",
           method: "Put",
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
           },
           body: JSON.stringify({
+            id: idUsuario,
             nome: nome.value,
             cargo: cargo.value,
             vinculo: resultado,

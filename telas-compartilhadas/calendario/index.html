@@ -10,34 +10,19 @@
 </head>
 
 <body>
-    <div class="titulo"></div>
+    <div class="titulo">
+        <h1>Selecione a data desejadas</h1>
+    </div>
     <section class="main">
-        <div class="data">
-            <input class="data" type="date" />
-        </div>
-        <div class="innerHTML"></div>
-        <div class="resultado">
-            <div class="aprovar">
-                <input type="checkbox" value="Aprovar" />
-                <h3>Aprovar</h3>
-            </div>
-            <div class="revisar">
-                <input type="checkbox" value="Aprovar" />
-                <h3>Revisar</h3>
-            </div>
-        </div>
-        <div class="textoRevisao">
-            <textarea name="" id="" cols="30" rows="10" placeholder="Texto da revisão"></textarea>
-        </div>
-        <div class="botoes">
-            <a href="" class="salvarBTN">salvar</a>
-            <a class="voltarBTN">Voltar</a>
+        <input type="month" class="month" />
+        <div class="calendario"></div>
+        <div class="botaoSair">
+            <a class="sair" style="cursor: pointer">SAIR</a>
         </div>
     </section>
-
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
     <script>
-        const voltar = document.querySelector(".voltarBTN");
+        const voltar = document.querySelector(".sair");
 
         voltar.addEventListener("click", (e) => {
             fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
@@ -49,7 +34,7 @@
                 })
                 .then((response) => response.json())
                 .then((usuario) => {
-                    window.location.href = '../../'+usuario.cargo+'/index.html';
+                    window.location.href = "../../" + usuario.cargo + "/index.html";
                 });
         });
     </script>

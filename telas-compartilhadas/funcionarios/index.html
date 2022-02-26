@@ -17,7 +17,7 @@
         <div class="listaFuncionarios"></div>
         <div class="botoes">
             <a class="cadastrarBTN" href="#">Cadastrar</a>
-            <a class="voltarBTN">Voltar</a>
+            <a class="voltarBTN" style="cursor: pointer">Voltar</a>
         </div>
     </section>
     <script src="./script.js"></script>
@@ -34,7 +34,7 @@
                 })
                 .then((response) => response.json())
                 .then((usuario) => {
-                    window.location.href = '../../'+usuario.cargo+'/index.html';
+                    window.location.href = "../../" + usuario.cargo + "/index.html";
                 });
         });
     </script>

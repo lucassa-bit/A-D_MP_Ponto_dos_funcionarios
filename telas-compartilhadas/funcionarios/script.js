@@ -21,6 +21,10 @@ function loadFuncionarios() {
   document.querySelector(".listaFuncionarios").innerHTML = "";
   fetch("https://flash-point-app.herokuapp.com/api/funcionario", {
     method: "Get",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
   })
     .then((response) => response.json())
     .then((usuarios) => {

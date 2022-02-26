@@ -64,3 +64,7 @@ body {
 .revisao {
     background-color: yellow;
 }
+
+.reprovado {
+    background-color: red;
+}

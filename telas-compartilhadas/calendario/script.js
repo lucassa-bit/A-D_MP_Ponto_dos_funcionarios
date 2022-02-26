@@ -23,16 +23,21 @@ async function criaDias() {
   console.log(status);
   for (let index = 0; index < status.length; index++) {
     var statusIndex = status[index];
+    console.log(statusIndex);
     var mudaCor = "naoCadastrado";
     if (statusIndex.status == "APROVADO") {
       mudaCor = "aprovado";
     } else if (statusIndex.status == "REVISAO") {
       mudaCor = "revisao";
+    } else if (statusIndex.status == "NAO_VALIDADO") {
+      mudaCor = "reprovado";
     }
     console.log(statusIndex.data);
     calendario.innerHTML += `
     <div class="divDatas">
-        <a class = ${mudaCor} onclick="novoHref(${index + 1})">${index + 1}</a>
+        <a class = ${mudaCor} style="cursor: pointer;" onclick="novoHref(${
+      index + 1
+    })">${index + 1}</a>
     </div>
 `;
   }

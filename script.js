@@ -3,10 +3,6 @@ const login = document.querySelector('.inputLogin')
 const senha = document.querySelector('.inputSenha')
 senha.setAttribute("type", "password");
 
-if (localStorage.getItem("token") != null) {
-    localStorage.removeItem("token");
-}
-
 botao.addEventListener('click', e => {
 
     const login = document.querySelector('.inputLogin')
@@ -28,7 +24,12 @@ botao.addEventListener('click', e => {
     }
 
     fetch('https://flash-point-app.herokuapp.com/login', fetchData)
-        .then(resp => resp.text())
+        .then(async resp => {
+            if (!resp.ok) {
+                throw new Error("Usuario ou senha incorretos!");
+            }
+            return resp.text();
+        })
         .then(token => localStorage.setItem("token", token))
         .then(async() => fetch('https://flash-point-app.herokuapp.com/api/usuario/me', {
                 method: 'Get',
@@ -49,11 +50,5 @@ botao.addEventListener('click', e => {
                     window.location.href = './APONTADOR/index.html';
                 }
             })
-            .catch(function(error) {
-                console.log(error);
-            }))
-        .catch(function(error) {
-            console.log(error)
-           
-        })
+        )
 });

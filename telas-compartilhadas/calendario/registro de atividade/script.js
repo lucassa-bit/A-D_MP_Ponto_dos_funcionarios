@@ -1,9 +1,21 @@
-const data = document.querySelector(".data");
+const queryString = window.location.search;
+const dataTitulo = document.querySelector(".titulo");
+var data = "";
+carregamentoInicial();
 
-data.addEventListener("change", (e) => {
-  var teste = e.target.value;
-  teste = teste.split("-").reverse().join("/");
-  fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + teste, {
+function carregamentoInicial() {
+  const urlParams = new URLSearchParams(queryString);
+  if (urlParams.has("data")) {
+    data = urlParams.get("data");
+    dataTitulo.innerHTML = ` <h2>A data selecionada foi: ` + data + `</h2>`;
+    tabelaPontos();
+  } else {
+    window.location.href = "../index.html";
+  }
+}
+
+function tabelaPontos() {
+  fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
     method: "Get",
     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
   })
@@ -19,8 +31,8 @@ data.addEventListener("change", (e) => {
                     <h3 class="h3_2">Hora extra<span>100%</span></h3>
                 </div>
                 <ul class="lista_funcionarios">
-                    <input class="horaExtra50" type="number" placeholder="Hora extra 50%">
-                    <input class="horaExtra100" type="number" placeholder="Hora extra 100%">
+                    <input class="horaExtra50" type="number" placeholder="Hora extra 50%" value = "${val.hora_extra_50}">
+                    <input class="horaExtra100" type="number" placeholder="Hora extra 100%"  value = "${val.hora_extra_100}">
                 </ul> 
                 <div style="cursor:pointer;" class="nome_funcionario">  <input class="checkbox"type="checkbox">` +
           val.empregado.nome +
@@ -28,12 +40,6 @@ data.addEventListener("change", (e) => {
                         <div class="informacoesExtras" style="display: none;">
                             <h4>Cargo: ` +
           val.empregado.cargo +
-          `</h4>
-          <h4>CPF: ` +
-          val.empregado.cpf +
-          `</h4>
-          <h4>RG: ` +
-          val.empregado.rg +
           `</h4>
                         </div>
                     
@@ -56,4 +62,4 @@ data.addEventListener("change", (e) => {
         });
       } // for
     });
-});
+}

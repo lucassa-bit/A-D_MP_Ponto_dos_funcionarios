@@ -14,25 +14,52 @@ async function criaDias() {
 
   calendario.innerHTML = "";
   const splitDate = mes.value.split("-");
-  for (let index = 1; index <= final; index++) {
-    const status = await pegaStatus(
-      String(index).padStart(2, "0"),
-      String(splitDate[1]).padStart(2, "0"),
-      splitDate[0]
-    );
-    console.log(status);
+  const status = await pegaStatus(
+    "01",
+    String(final).padStart(2, "0"),
+    String(splitDate[1]).padStart(2, "0"),
+    splitDate[0]
+  );
+  console.log(status);
+  for (let index = 0; index < status.length; index++) {
+    var statusIndex = status[index];
+    var mudaCor = "naoCadastrado";
+    if (statusIndex.status == "APROVADO") {
+      mudaCor = "aprovado";
+    } else if (statusIndex.status == "REVISAO") {
+      mudaCor = "revisao";
+    }
+    console.log(statusIndex.data);
     calendario.innerHTML += `
     <div class="divDatas">
-        <a href="registro de atividade/index.html">${index}</a>
+        <a class = ${mudaCor} onclick="novoHref(${index + 1})">${index + 1}</a>
     </div>
 `;
   }
 }
 
-async function pegaStatus(dia, mes, ano) {
+function novoHref(novaData) {
+  const data = mes.value.split("-");
+  window.location.href =
+    "./registro de atividade/index.html?data=" +
+    novaData +
+    "/" +
+    data[1] +
+    "/" +
+    data[0];
+  console.log(novaData);
+}
+
+async function pegaStatus(diaInicial, diaFinal, mes, ano) {
   return fetch(
-    "https://flash-point-app.herokuapp.com/api/revisao_ponto?data=" +
-      dia +
+    "https://flash-point-app.herokuapp.com/api/revisao_ponto/range?dataInicial=" +
+      diaInicial +
+      "/" +
+      mes +
+      "/" +
+      ano +
+      "&dataFinal=" +
+      diaFinal +
       "/" +
       mes +
       "/" +
@@ -43,7 +70,7 @@ async function pegaStatus(dia, mes, ano) {
     }
   )
     .then((response) => response.json())
-    .then((status) => status["status"]);
+    .then((status) => status);
 }
 
 mes.addEventListener("change", (e) => {

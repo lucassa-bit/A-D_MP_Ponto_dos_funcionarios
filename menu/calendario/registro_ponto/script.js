@@ -251,7 +251,7 @@ function addRevisao() {
             "Content-Type": "application/json",
             Authorization: "Bearer " + localStorage.getItem("token"),
         },
-    }).then(async (response) => response.json());
+    }).then(async (response) => response);
 }
 
 function onClickFuncionarioCheckbox(id, element) {

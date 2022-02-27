@@ -42,9 +42,14 @@ async function criaDias() {
 
 function novoHref(novaData) {
     const data = mes.value.split("-");
+    let dia = novaData + "";
+    if(Number(novaData) < 10) {
+        dia = "0" + dia;
+    }
+
     window.location.href =
         "./registro de atividade/index.html?data=" +
-        novaData +
+        dia +
         "/" +
         data[1] +
         "/" +

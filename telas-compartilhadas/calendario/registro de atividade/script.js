@@ -261,17 +261,17 @@ function tabelaPontos() {
       status = "CADASTRADO";
     }
 
-    fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
-      method: "Post",
-      body: JSON.stringify({
-        data: sessionStorage.getItem("DATA"),
-        status: status,
-        observacao: document.querySelector("#texto").value,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
+    fetch("https://flash-point-app.herokuapp.com/api/revisao_ponto", {
+        method: "Post",
+        body: JSON.stringify({
+            data: sessionStorage.getItem("DATA"),
+            status: status,
+            observacao: document.querySelector("#texto").value
+        }),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+        },
     }).then(async (response) => response.json());
   }
 

@@ -1,28 +1,62 @@
-/* const novoLogin = document.querySelector('.novoLogin')
-const novaSenha = document.querySelector('.novaSenha')
-const novoNome = document.querySelector('.novoNome') */
-/* const novoCargo = document.querySelector('.novoCargo') */
+const cadastrarBTN = document.querySelector(".cadastrarBTN");
 
-const select = document.querySelector("#select");
-const cadastrar = document.querySelector(".botaoCadastrar");
-
-cadastrar.addEventListener("click", (e) => {
-  const novoLogin = document.querySelector(".novoLogin").value;
-  const novaSenha = document.querySelector(".novaSenha").value;
-  const novoNome = document.querySelector(".novoNome").value;
-  const novoCargo = select.options[select.selectedIndex].value;
-
-  fetch("https://flash-point-app.herokuapp.com/api/usuario", {
-    method: "Post",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("token"),
-    },
-    body: JSON.stringify({
-      login: novoLogin,
-      senha: novaSenha,
-      nome: novoNome,
-      cargo: novoCargo,
-    }),
-  }).then((response) => response.json());
+cadastrarBTN.addEventListener("click", (e) => {
+    cadastrarBTN.setAttribute("href", "./cadastrar/index.html");
 });
+
+function deleteFuncionarioById(id) {
+    fetch(
+        "https://flash-point-app.herokuapp.com/api/usuario/delete?id=" + id, {
+            method: "Post",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        }
+    ).then((e) => loadFuncionarios());
+}
+
+function loadFuncionarios() {
+    document.querySelector(".listaFuncionarios").innerHTML = "";
+    fetch("https://flash-point-app.herokuapp.com/api/usuario", {
+            method: "Get",
+            headers: {
+                mode: "no-cors",
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        })
+        .then((response) => response.json())
+        .then((usuarios) => {
+            usuarios.map((val) => {
+                document.querySelector(".listaFuncionarios").innerHTML +=
+                    `
+        <div class="containerFuncionarios">
+            <ul class="lista_funcionarios">
+              <li class="funcionario" > Nome: ` +
+                    val.nome +
+                    ` - Cargo: ` +
+                    val.cargo +
+                    `</li> 
+                     <input class="deletarInput" type="submit" value="Editar" onclick="handleSubmit(` +
+                    Number(val.id) +
+                    `)"/> 
+                    <input class="deletarInput" type="submit" value="Deletar" onclick="deleteFuncionarioById(` +
+                    Number(val.id) +
+                    `)"/>  
+            </ul> 
+        </div>    
+
+        `;
+            });
+        });
+}
+
+function handleSubmit(id) {;
+    sessionStorage.setItem("ID", id);
+    window.location.href = './editar/index.html';
+    
+    return;
+}
+
+loadFuncionarios();

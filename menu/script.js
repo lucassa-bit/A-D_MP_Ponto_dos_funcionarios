@@ -4,51 +4,55 @@ const folhaBTN = document.querySelector(".folhaBTN");
 const gestaoBTN = document.querySelector(".gestaoBTN");
 const sairBTN = document.querySelector(".botaoSair");
 
-function load() {
 
-  folhaBTN.style.display = 'none';
-  gestaoBTN.style.display = 'none';
-
-  fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
-    method: "Get",
-    headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-    },
-  })
-  .then((response) => response.json())
-  .then((usuario) => {
-      if (usuario.cargo == "ADMIN") {
-        folhaBTN.style.display = 'block';
-        gestaoBTN.style.display = 'block';
-      } else if(usuario.cargo == "LIDER") {
-        folhaBTN.style.display = 'block';
-      }
-  });
-}
-
-load();
 
 if (localStorage.getItem("token") == null) {
-  window.location.href = "../index.html";
+    window.location.href = "../index.html";
 }
 
 funcionariosBTN.addEventListener("click", (e) => {
-  window.location.href = "./funcionarios/index.html";
+    window.location.href = "./funcionarios/index.html";
 });
 
 registroBTN.addEventListener("click", (e) => {
-  window.location.href = "./calendario/index.html";
+    window.location.href = "./calendario/index.html";
 });
 
 folhaBTN.addEventListener("click", (e) => {
-  window.location.href = "./folha/index.html";
+    window.location.href = "./folha/index.html";
 });
 
 gestaoBTN.addEventListener("click", (e) => {
-  window.location.href = "./gestao_fiscal/index.html";
+    window.location.href = "./gestao_fiscal/index.html";
 });
 
 sairBTN.addEventListener("click", (e) => {
-  window.location.href = "./../index.html";
+    window.location.href = "./../index.html";
 });
+
+function load() {
+    const folhaBTN = document.querySelector(".folhaBTN");
+    const gestaoBTN = document.querySelector(".gestaoBTN");
+
+    folhaBTN.style.display = 'none';
+    gestaoBTN.style.display = 'none';
+
+    fetch("https://aed-cargo-ponto.herokuapp.com/api/usuario/me", {
+            method: "Get",
+            headers: {
+                Accept: "application/json",
+                Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+        })
+        .then((response) => response.json())
+        .then((usuario) => {
+            if (usuario.cargo == "ADMIN") {
+                folhaBTN.style.display = 'block';
+                gestaoBTN.style.display = 'block';
+            } else if (usuario.cargo == "LIDER") {
+                folhaBTN.style.display = 'block';
+            }
+        });
+}
+
+load();

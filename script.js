@@ -23,7 +23,7 @@ botao.addEventListener('click', e => {
         body: JSON.stringify(data)
     }
 
-    fetch('https://flash-point-app.herokuapp.com/login', fetchData)
+    fetch('https://aed-cargo-ponto.herokuapp.com/login', fetchData)
         .then(async resp => {
             if (!resp.ok) {
                 throw new Error("Usuario ou senha incorretos!");

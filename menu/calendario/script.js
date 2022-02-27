@@ -21,34 +21,32 @@ async function criaDias() {
     );
     for (let index = 0; index < status.length; index++) {
         var statusIndex = status[index];
-        var mudaCor = "naoCadastrado";
+        var mudaCor = "#ebebeb";
         if (statusIndex.status == "APROVADO") {
-            mudaCor = "aprovado";
+            mudaCor = "#60f768";
         } else if (statusIndex.status == "REVISAO") {
-            mudaCor = "revisao";
+            mudaCor = "#f76060";
         } else if (statusIndex.status == "CADASTRADO") {
-            mudaCor = "cadastrado";
+            mudaCor = "#f2f760";
         }
 
         calendario.innerHTML += `
-    <div class="divDatas">
-        <a class = ${mudaCor} style="cursor: pointer;" onclick="redirecionarParaPonto(${
-      index + 1
-    })">${index + 1}</a>
+    <div class="divDatas" style="background-color: ${mudaCor};" style="cursor: pointer;" onclick="novoHref(${index + 1})">
+        <a>${index + 1}</a>
     </div>
 `;
     }
 }
 
-function redirecionarParaPonto(novaData) {
+function novoHref(novaData) {
     const data = mes.value.split("-");
     let dia = novaData + "";
-    if(Number(novaData) < 10) {
+    if (Number(novaData) < 10) {
         dia = "0" + dia;
     }
 
     window.location.href =
-        "./registro_ponto/index.html?data=" +
+        "./registro de atividade/index.html?data=" +
         dia +
         "/" +
         data[1] +
@@ -59,7 +57,7 @@ function redirecionarParaPonto(novaData) {
 
 async function pegaStatus(diaInicial, diaFinal, mes, ano) {
     return fetch(
-            "https://flash-point-app.herokuapp.com/api/revisao_ponto/range?dataInicial=" +
+            "https://aed-cargo-ponto.herokuapp.com/api/revisao_ponto/range?dataInicial=" +
             diaInicial +
             "/" +
             mes +

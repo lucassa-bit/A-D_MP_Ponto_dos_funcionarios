@@ -32,7 +32,7 @@ async function criaDias() {
 
         calendario.innerHTML += `
     <div class="divDatas">
-        <a class = ${mudaCor} style="cursor: pointer;" onclick="novoHref(${
+        <a class = ${mudaCor} style="cursor: pointer;" onclick="redirecionarParaPonto(${
       index + 1
     })">${index + 1}</a>
     </div>
@@ -40,7 +40,7 @@ async function criaDias() {
     }
 }
 
-function novoHref(novaData) {
+function redirecionarParaPonto(novaData) {
     const data = mes.value.split("-");
     let dia = novaData + "";
     if(Number(novaData) < 10) {
@@ -48,7 +48,7 @@ function novoHref(novaData) {
     }
 
     window.location.href =
-        "./registro de atividade/index.html?data=" +
+        "./registro_ponto/index.html?data=" +
         dia +
         "/" +
         data[1] +

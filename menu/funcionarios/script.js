@@ -6,7 +6,7 @@ cadastrarBTN.addEventListener("click", (e) => {
 
 function deleteFuncionarioById(id) {
     fetch(
-        "https://flash-point-app.herokuapp.com/api/funcionario/delete?id=" + id, {
+        "https://aed-cargo-ponto.herokuapp.com/api/funcionario/delete?id=" + id, {
             method: "Post",
             headers: {
                 "Content-Type": "application/json",
@@ -18,7 +18,7 @@ function deleteFuncionarioById(id) {
 
 function loadFuncionarios() {
     document.querySelector(".listaFuncionarios").innerHTML = "";
-    fetch("https://flash-point-app.herokuapp.com/api/funcionario", {
+    fetch("https://aed-cargo-ponto.herokuapp.com/api/funcionario", {
             method: "Get",
             headers: {
                 mode: "no-cors",

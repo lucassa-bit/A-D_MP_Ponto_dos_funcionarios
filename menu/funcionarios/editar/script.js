@@ -20,7 +20,7 @@ const cadastrarBTN = document.querySelector(".cadastrarBTN");
 window.addEventListener('load', () => {
     var id = sessionStorage.getItem('ID');
 
-    fetch("https://flash-point-app.herokuapp.com/api/funcionario/find?idEmpregado=" + id, {
+    fetch("https://aed-cargo-ponto.herokuapp.com/api/funcionario/find?idEmpregado=" + id, {
             method: "Get",
             headers: {
                 "Content-Type": "application/json",
@@ -83,7 +83,7 @@ select.addEventListener("change", (e) => {
 });
 
 cadastrarBTN.addEventListener("click", (e) => {
-    fetch("https://flash-point-app.herokuapp.com/api/funcionario/edit", {
+    fetch("https://aed-cargo-ponto.herokuapp.com/api/funcionario/edit", {
             method: "Post",
             headers: {
                 "Content-Type": "application/json",

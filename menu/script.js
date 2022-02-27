@@ -34,19 +34,19 @@ if (localStorage.getItem("token") == null) {
 }
 
 funcionariosBTN.addEventListener("click", (e) => {
-  window.location.href = "funcionarios";
+  window.location.href = "/menu/funcionarios";
 });
 
 registroBTN.addEventListener("click", (e) => {
-  window.location.href = "calendario";
+  window.location.href = "menu/calendario";
 });
 
 folhaBTN.addEventListener("click", (e) => {
-  window.location.href = "folha";
+  window.location.href = "menu/folha";
 });
 
 gestaoBTN.addEventListener("click", (e) => {
-  window.location.href = "gestao_fiscal";
+  window.location.href = "menu/gestao_fiscal";
 });
 
 sairBTN.addEventListener("click", (e) => {

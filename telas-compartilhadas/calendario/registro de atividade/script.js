@@ -10,7 +10,29 @@ var selecionados = [];
 
 carregamentoInicial();
 
+async function retornCargo() {
+  fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
+    method: "Get",
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  })
+    .then((response) => response.json())
+    .then((usuario) => {
+      var cargo = "";
+      if (usuario.cargo === "ADMIN") {
+        cargo = "ADMIN";
+      } else if (usuario.cargo === "LIDER") {
+        cargo = "LIDER";
+      } else if (usuario.cargo === "APONTADOR") {
+        cargo = "APONTADOR";
+      }
+    });
+}
+
 function tabelaPontos() {
+
     fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
             method: "Get",
             headers: { Authorization: "Bearer " + localStorage.getItem("token") },
@@ -23,10 +45,12 @@ function tabelaPontos() {
                 main2.setAttribute("class", "main2");
                 main2.innerHTML += `
 
+
         <div class="titulos">
             <h3 class="h3_1">Hora extra<span>50%</span></h3>
             <h3 class="h3_2">Hora extra<span>100%</span></h3>
         </div>`;
+
 
                 const listaFuncionarios = document.createElement("ul");
                 listaFuncionarios.setAttribute("class", "lista_funcionarios");
@@ -71,7 +95,7 @@ function tabelaPontos() {
                 nomeFuncionario.innerHTML +=
                     val.empregado.nome +
                     `
-                    <div class="informacoesExtras" style="display: none;">
+    <div class="informacoesExtras" style="display: none;">
                         <h4>Cargo: ` +
                     val.empregado.cargo +
                     `</h4>
@@ -117,6 +141,7 @@ fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
             window.location.href = "./APONTADOR/index.html";
         }
 
+
         const aprovarCheckbox = document.querySelector(".aprovarCheckbox");
         const revisarCheckbox = document.querySelector(".revisarCheckbox");
         const testes = document.querySelector(".horaExtra50");
@@ -136,6 +161,7 @@ fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
             input100.setAttribute("disabled", "true");
         }
     });
+
 
 function carregamentoInicial() {
     const urlParams = new URLSearchParams(queryString);

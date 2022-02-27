@@ -6,41 +6,6 @@ var funcionariosPontos = [];
 var selecionados = [];
 carregamentoInicial();
 
-fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
-  method: "Get",
-  headers: {
-    Accept: "application/json",
-    Authorization: "Bearer " + localStorage.getItem("token"),
-  },
-})
-  .then((response) => response.json())
-  .then((usuario) => {
-    if (usuario.cargo === "ADMIN") {
-    } else if (usuario.cargo === "LIDER") {
-      window.location.href = "./LIDER/index.html";
-    } else if (usuario.cargo === "APONTADOR") {
-      window.location.href = "./APONTADOR/index.html";
-    }
-
-    if (usuario.cargo === "ADMIN") {
-    } else if (usuario.cargo === "LIDER") {
-      // lider n pode aprovar nem revisar
-    } else if (usuario.cargo === "APONTADOR") {
-      //so pode clicar em aprovar ou revisar
-    }
-  });
-
-function carregamentoInicial() {
-  const urlParams = new URLSearchParams(queryString);
-  if (urlParams.has("data")) {
-    data = urlParams.get("data");
-    dataTitulo.innerHTML = ` <h2>A data selecionada foi: ` + data + `</h2>`;
-    tabelaPontos();
-  } else {
-    window.location.href = "../index.html";
-  }
-}
-
 function tabelaPontos() {
   fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
     method: "Get",
@@ -131,6 +96,53 @@ function tabelaPontos() {
         });
       } // for
     });
+}
+
+fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
+  method: "Get",
+  headers: {
+    Accept: "application/json",
+    Authorization: "Bearer " + localStorage.getItem("token"),
+  },
+})
+  .then((response) => response.json())
+  .then((usuario) => {
+    if (usuario.cargo === "ADMIN") {
+    } else if (usuario.cargo === "LIDER") {
+      window.location.href = "./LIDER/index.html";
+    } else if (usuario.cargo === "APONTADOR") {
+      window.location.href = "./APONTADOR/index.html";
+    }
+
+    const aprovarCheckbox = document.querySelector(".aprovarCheckbox");
+    const revisarCheckbox = document.querySelector(".revisarCheckbox");
+    const testes = document.querySelector(".horaExtra50");
+    console.log(testes.value);
+    const input100 = document.querySelectorAll(".horaExtra100");
+
+    if (usuario.cargo === "ADMIN") {
+      testes.setAttribute("disabled", "true");
+      input100.setAttribute("disabled", "true");
+    } else if (usuario.cargo === "LIDER") {
+      //so pode botar as horas extras
+      aprovarCheckbox.setAttribute("disabled", "true");
+      revisarCheckbox.setAttribute("disabled", "true");
+    } else if (usuario.cargo === "APONTADOR") {
+      //so pode clicar em aprovar ou revisar
+      testes.setAttribute("disabled", "true");
+      input100.setAttribute("disabled", "true");
+    }
+  });
+
+function carregamentoInicial() {
+  const urlParams = new URLSearchParams(queryString);
+  if (urlParams.has("data")) {
+    data = urlParams.get("data");
+    dataTitulo.innerHTML = ` <h2>A data selecionada foi: ` + data + `</h2>`;
+    tabelaPontos();
+  } else {
+    window.location.href = "../index.html";
+  }
 }
 
 salvarBTN.addEventListener("click", (e) => {

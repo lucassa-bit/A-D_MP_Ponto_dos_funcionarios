@@ -38,15 +38,15 @@ funcionariosBTN.addEventListener("click", (e) => {
 });
 
 registroBTN.addEventListener("click", (e) => {
-  window.location.href = "menu/calendario";
+  window.location.href = "/menu/calendario";
 });
 
 folhaBTN.addEventListener("click", (e) => {
-  window.location.href = "menu/folha";
+  window.location.href = "/menu/folha";
 });
 
 gestaoBTN.addEventListener("click", (e) => {
-  window.location.href = "menu/gestao_fiscal";
+  window.location.href = "/menu/gestao_fiscal";
 });
 
 sairBTN.addEventListener("click", (e) => {

@@ -138,7 +138,7 @@ cadastrarBTN.addEventListener("click", (e) => {
         }).then((e) => {
           if (e.status == 201) {
             alert("Criado");
-            window.location.href = "../index.html";
+            window.location.href = "./../index.html";
           } else {
             alert("Ocorreu um erro ao cadastrar o funcionário");
           }

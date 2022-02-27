@@ -30,25 +30,25 @@ function load() {
 load();
 
 if (localStorage.getItem("token") == null) {
-  window.location.href = "../";
+  window.location.href = "../index.html";
 }
 
 funcionariosBTN.addEventListener("click", (e) => {
-  window.location.href = "/menu/funcionarios";
+  window.location.href = "/menu/funcionarios/index.html";
 });
 
 registroBTN.addEventListener("click", (e) => {
-  window.location.href = "/menu/calendario";
+  window.location.href = "/menu/calendario/index.html";
 });
 
 folhaBTN.addEventListener("click", (e) => {
-  window.location.href = "/menu/folha";
+  window.location.href = "/menu/folha/index.html";
 });
 
 gestaoBTN.addEventListener("click", (e) => {
-  window.location.href = "/menu/gestao_fiscal";
+  window.location.href = "/menu/gestao_fiscal/index.html";
 });
 
 sairBTN.addEventListener("click", (e) => {
-  window.location.href = "./..";
+  window.location.href = "./../index.html";
 });

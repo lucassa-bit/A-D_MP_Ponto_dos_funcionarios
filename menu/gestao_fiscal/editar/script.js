@@ -41,5 +41,5 @@ cadastrar.addEventListener("click", (e) => {
     }).then((response) => response.json());
 }).then(async() => {
     sessionStorage.removeItem("ID");
-    window.location.href = '../index.html';
+    window.location.href = './../index.html';
 });

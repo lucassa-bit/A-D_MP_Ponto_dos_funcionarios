@@ -1,7 +1,7 @@
 const cadastrarBTN = document.querySelector(".cadastrarBTN");
 
 cadastrarBTN.addEventListener("click", (e) => {
-    cadastrarBTN.setAttribute("href", "./cadastrar");
+    cadastrarBTN.setAttribute("href", "./menu/cadastrar");
 });
 
 function deleteFuncionarioById(id) {
@@ -54,7 +54,7 @@ function loadFuncionarios() {
 
 function handleSubmit(id) {;
     sessionStorage.setItem("ID", id);
-    window.location.href = './editar';
+    window.location.href = './menu/editar';
     
     return;
 }

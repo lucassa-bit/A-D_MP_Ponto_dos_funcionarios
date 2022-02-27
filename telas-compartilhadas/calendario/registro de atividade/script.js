@@ -32,18 +32,17 @@ async function retornCargo() {
 }
 
 function tabelaPontos() {
-
-    fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
-            method: "Get",
-            headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-        })
-        .then((response) => response.json())
-        .then((funcionarios) => {
-            document.querySelector(".innerHTML").innerHTML = "";
-            funcionarios.map((val) => {
-                const main2 = document.createElement("div");
-                main2.setAttribute("class", "main2");
-                main2.innerHTML += `
+  fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
+    method: "Get",
+    headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+  })
+    .then((response) => response.json())
+    .then((funcionarios) => {
+      document.querySelector(".innerHTML").innerHTML = "";
+      funcionarios.map((val) => {
+        const main2 = document.createElement("div");
+        main2.setAttribute("class", "main2");
+        main2.innerHTML += `
 
 
         <div class="titulos">
@@ -51,156 +50,153 @@ function tabelaPontos() {
             <h3 class="h3_2">Hora extra<span>100%</span></h3>
         </div>`;
 
+        const listaFuncionarios = document.createElement("ul");
+        listaFuncionarios.setAttribute("class", "lista_funcionarios");
 
-                const listaFuncionarios = document.createElement("ul");
-                listaFuncionarios.setAttribute("class", "lista_funcionarios");
+        const input50 = document.createElement("input");
+        input50.setAttribute("class", "horaExtra50");
+        input50.setAttribute("type", "text");
+        input50.setAttribute("placeholder", "Hora extra 50%");
+        input50.setAttribute("value", val.hora_extra_50);
 
-                const input50 = document.createElement("input");
-                input50.setAttribute("class", "horaExtra50");
-                input50.setAttribute("type", "text");
-                input50.setAttribute("placeholder", "Hora extra 50%");
-                input50.setAttribute("value", val.hora_extra_50);
+        const input100 = document.createElement("input");
+        input100.setAttribute("class", "horaExtra100");
+        input100.setAttribute("type", "text");
+        input100.setAttribute("placeholder", "Hora extra 100%");
+        input100.setAttribute("value", val.hora_extra_100);
 
-                const input100 = document.createElement("input");
-                input100.setAttribute("class", "horaExtra100");
-                input100.setAttribute("type", "text");
-                input100.setAttribute("placeholder", "Hora extra 100%");
-                input100.setAttribute("value", val.hora_extra_100);
+        main2.setAttribute("class", "main2");
 
-                main2.setAttribute("class", "main2");
+        main2.appendChild(listaFuncionarios);
 
-                main2.appendChild(listaFuncionarios);
+        const nomeFuncionario = document.createElement("div");
+        nomeFuncionario.setAttribute("class", "nome_funcionario");
+        nomeFuncionario.setAttribute("style", "cursor:pointer;");
 
-                const nomeFuncionario = document.createElement("div");
-                nomeFuncionario.setAttribute("class", "nome_funcionario");
-                nomeFuncionario.setAttribute("style", "cursor:pointer;");
+        const checkbox = document.createElement("input");
+        checkbox.setAttribute("class", "checkbox");
+        checkbox.setAttribute("type", "checkbox");
+        checkbox.setAttribute(
+          "onclick",
+          `onClickFuncionarioCheckbox(${val.empregado.id}, this)`
+        );
+        if (val.presente == true) {
+          selecionados.push(val.empregado.id);
+          checkbox.setAttribute("checked", "true");
+        }
 
-                const checkbox = document.createElement("input");
-                checkbox.setAttribute("class", "checkbox");
-                checkbox.setAttribute("type", "checkbox");
-                checkbox.setAttribute(
-                    "onclick",
-                    `onClickFuncionarioCheckbox(${val.empregado.id}, this)`
-                );
-                if (val.presente == true) {
-                    selecionados.push(val.empregado.id);
-                    checkbox.setAttribute("checked", "true");
-                }
+        nomeFuncionario.appendChild(checkbox);
+        listaFuncionarios.appendChild(nomeFuncionario);
 
-                nomeFuncionario.appendChild(checkbox);
-                listaFuncionarios.appendChild(nomeFuncionario);
-
-                listaFuncionarios.appendChild(input50);
-                listaFuncionarios.appendChild(input100);
-                nomeFuncionario.innerHTML +=
-                    val.empregado.nome +
-                    `
+        listaFuncionarios.appendChild(input50);
+        listaFuncionarios.appendChild(input100);
+        nomeFuncionario.innerHTML +=
+          val.empregado.nome +
+          `
     <div class="informacoesExtras" style="display: none;">
                         <h4>Cargo: ` +
-                    val.empregado.cargo +
-                    `</h4>
+          val.empregado.cargo +
+          `</h4>
                     </div>
     `;
-                document.querySelector(".innerHTML").appendChild(main2);
-                funcionariosPontos.push({
-                    idFuncionario: val.empregado.id,
-                    horaExtra50Element: input50,
-                    horaExtra100Element: input100,
-                    checkboxElement: checkbox,
-                });
-            });
-
-            var nomesFuncionarios = document.querySelectorAll(".nome_funcionario");
-            for (var i = 0; i < nomesFuncionarios.length; i++) {
-                nomesFuncionarios[i].addEventListener("click", (e) => {
-                    if (
-                        e.target.querySelector(".informacoesExtras").style.display == "none"
-                    ) {
-                        e.target.querySelector(".informacoesExtras").style.display =
-                            "block";
-                    } else {
-                        e.target.querySelector(".informacoesExtras").style.display = "none";
-                    }
-                });
-            } // for
+        document.querySelector(".innerHTML").appendChild(main2);
+        funcionariosPontos.push({
+          idFuncionario: val.empregado.id,
+          horaExtra50Element: input50,
+          horaExtra100Element: input100,
+          checkboxElement: checkbox,
         });
+      });
+
+      var nomesFuncionarios = document.querySelectorAll(".nome_funcionario");
+      for (var i = 0; i < nomesFuncionarios.length; i++) {
+        nomesFuncionarios[i].addEventListener("click", (e) => {
+          if (
+            e.target.querySelector(".informacoesExtras").style.display == "none"
+          ) {
+            e.target.querySelector(".informacoesExtras").style.display =
+              "block";
+          } else {
+            e.target.querySelector(".informacoesExtras").style.display = "none";
+          }
+        });
+      } // for
+    });
 }
 
 fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
-        method: "Get",
-        headers: {
-            Accept: "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-    })
-    .then((response) => response.json())
-    .then((usuario) => {
-        if (usuario.cargo === "ADMIN") {} else if (usuario.cargo === "LIDER") {
-            window.location.href = "./LIDER/index.html";
-        } else if (usuario.cargo === "APONTADOR") {
-            window.location.href = "./APONTADOR/index.html";
-        }
+  method: "Get",
+  headers: {
+    Accept: "application/json",
+    Authorization: "Bearer " + localStorage.getItem("token"),
+  },
+})
+  .then((response) => response.json())
+  .then((usuario) => {
+    if (usuario.cargo === "ADMIN") {
+    } else if (usuario.cargo === "LIDER") {
+      window.location.href = "./LIDER/index.html";
+    } else if (usuario.cargo === "APONTADOR") {
+      window.location.href = "./APONTADOR/index.html";
+    }
 
+    const aprovarCheckbox = document.querySelector(".aprovarCheckbox");
+    const revisarCheckbox = document.querySelector(".revisarCheckbox");
+    const input50 = document.querySelector(".horaExtra50");
+    console.log(input50.value);
+    const input100 = document.querySelectorAll(".horaExtra100");
 
-        const aprovarCheckbox = document.querySelector(".aprovarCheckbox");
-        const revisarCheckbox = document.querySelector(".revisarCheckbox");
-        const testes = document.querySelector(".horaExtra50");
-        console.log(testes.value);
-        const input100 = document.querySelectorAll(".horaExtra100");
-
-        if (usuario.cargo === "ADMIN") {
-            testes.setAttribute("disabled", "true");
-            input100.setAttribute("disabled", "true");
-        } else if (usuario.cargo === "LIDER") {
-            //so pode botar as horas extras
-            aprovarCheckbox.setAttribute("disabled", "true");
-            revisarCheckbox.setAttribute("disabled", "true");
-        } else if (usuario.cargo === "APONTADOR") {
-            //so pode clicar em aprovar ou revisar
-            testes.setAttribute("disabled", "true");
-            input100.setAttribute("disabled", "true");
-        }
-    });
-
+    if (usuario.cargo === "ADMIN") {
+      return;
+    } else if (usuario.cargo === "LIDER") {
+      //so pode botar as horas extras
+      aprovarCheckbox.setAttribute("disabled", "true");
+      revisarCheckbox.setAttribute("disabled", "true");
+    } else if (usuario.cargo === "APONTADOR") {
+      //so pode clicar em aprovar ou revisar
+      input50.setAttribute("disabled", "true");
+      input100.setAttribute("disabled", "true");
+    }
+  });
 
 function carregamentoInicial() {
-    const urlParams = new URLSearchParams(queryString);
-    if (urlParams.has("data")) {
-        data = urlParams.get("data");
-        dataTitulo.innerHTML = ` <h2>A data selecionada foi: ` + data + `</h2>`;
-        tabelaPontos();
-    } else {
-        window.location.href = "../index.html";
-    }
+  const urlParams = new URLSearchParams(queryString);
+  if (urlParams.has("data")) {
+    data = urlParams.get("data");
+    dataTitulo.innerHTML = ` <h2>A data selecionada foi: ` + data + `</h2>`;
+    tabelaPontos();
+  } else {
+    window.location.href = "../index.html";
+  }
 }
 
 salvarBTN.addEventListener("click", (e) => {
-    var body = [];
-    funcionariosPontos.forEach((element) => {
-        body.push({
-            idFuncionario: element.idFuncionario,
-            hora_extra_50: element.horaExtra50Element.value,
-            hora_extra_100: element.horaExtra100Element.value,
-            presente: selecionados.some((id) => id == element.idFuncionario),
-        });
+  var body = [];
+  funcionariosPontos.forEach((element) => {
+    body.push({
+      idFuncionario: element.idFuncionario,
+      hora_extra_50: element.horaExtra50Element.value,
+      hora_extra_100: element.horaExtra100Element.value,
+      presente: selecionados.some((id) => id == element.idFuncionario),
     });
+  });
 
-    console.log(body);
-    fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
-        method: "Post",
-        body: JSON.stringify(body),
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-    }).then((response) => response);
+  console.log(body);
+  fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
+    method: "Post",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  }).then((response) => response);
 });
 
 function onClickFuncionarioCheckbox(id, element) {
-    console.log(element.checked);
-    if (element.checked) {
-        selecionados.push(id);
-    } else {
-        selecionados = selecionados.filter((e) => e !== id);
-    }
+  console.log(element.checked);
+  if (element.checked) {
+    selecionados.push(id);
+  } else {
+    selecionados = selecionados.filter((e) => e !== id);
+  }
 }

@@ -16,12 +16,15 @@
     <section class="main">
         <div class="datas">
             <div class="dataInicial">
-                <h2>Data Inicial</h2>
-                <input type="date" class="dataInicialInput" />
+                <h2>Mês Escolhido</h2>
+                <input type="month" class="dataInicialInput" />
             </div>
             <div class="dataFinal">
-                <h2>Data Final</h2>
-                <input type="date" class="dataFinalInput" />
+                <h2>Escolha a Quinzena</h2>
+                <select class="selectQuinzena" name="select" style="width: 250px; padding: 2px">
+            <option value="primeira_quinzena">Primeira Quinzena</option>
+            <option value="ultima_quinzena">Segunda Quinzena</option>
+          </select>
             </div>
         </div>
         <div class="funcionarios"></div>

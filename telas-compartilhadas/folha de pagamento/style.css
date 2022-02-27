@@ -45,6 +45,14 @@ body {
     margin-left: 20px;
 }
 
+.dataFinal h2 {
+    margin-bottom: 8px;
+}
+
+.dataFinal select {
+    margin-bottom: 1px;
+}
+
 .dataFinal input {
     width: 200px;
     margin-top: 5px;

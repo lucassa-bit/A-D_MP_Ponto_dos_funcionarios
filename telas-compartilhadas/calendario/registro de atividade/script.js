@@ -21,6 +21,13 @@ fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
     } else if (usuario.cargo === "APONTADOR") {
       window.location.href = "./APONTADOR/index.html";
     }
+
+    if (usuario.cargo === "ADMIN") {
+    } else if (usuario.cargo === "LIDER") {
+      // lider n pode aprovar nem revisar
+    } else if (usuario.cargo === "APONTADOR") {
+      //so pode clicar em aprovar ou revisar
+    }
   });
 
 function carregamentoInicial() {

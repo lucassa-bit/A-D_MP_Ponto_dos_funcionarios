@@ -23,7 +23,6 @@ async function criaDias() {
   console.log(status);
   for (let index = 0; index < status.length; index++) {
     var statusIndex = status[index];
-    console.log(statusIndex);
     var mudaCor = "naoCadastrado";
     if (statusIndex.status == "APROVADO") {
       mudaCor = "aprovado";

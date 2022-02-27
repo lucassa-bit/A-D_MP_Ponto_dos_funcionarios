@@ -24,5 +24,9 @@ cadastrar.addEventListener("click", (e) => {
       nome: novoNome,
       cargo: novoCargo,
     }),
-  }).then((response) => response.json());
+  }).then(async (e) => {
+    if (e.ok) {
+      alert("Usuário cadastrado com sucesso!");
+    }
+  });
 });

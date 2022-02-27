@@ -5,13 +5,19 @@ cadastrarBTN.addEventListener("click", (e) => {
 });
 
 function deleteFuncionarioById(id) {
+  var confirmar = confirm("Tem certeza que quer deletar?");
+  if (!confirmar) {
+    return;
+  }
   fetch("https://aed-ponto.herokuapp.com/api/usuario/delete?id=" + id, {
     method: "Post",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + localStorage.getItem("token"),
     },
-  }).then((e) => loadFuncionarios());
+  })
+    .then((e) => loadFuncionarios())
+    .then(alert("Usuário Deletado com sucesso!"));
 }
 
 function loadFuncionarios() {
@@ -39,6 +45,7 @@ function loadFuncionarios() {
                      <input class="deletarInput" type="submit" value="Editar" onclick="handleSubmit(` +
           Number(val.id) +
           `)"/> 
+        
                     <input class="deletarInput" type="submit" value="Deletar" onclick="deleteFuncionarioById(` +
           Number(val.id) +
           `)"/>  

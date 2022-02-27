@@ -53,8 +53,8 @@ body {
     margin-bottom: 1px;
 }
 
-.dataFinal input {
-    width: 200px;
+.dataFinal select {
+    max-width: 250px;
     margin-top: 5px;
     text-align: center;
 }
@@ -120,17 +120,17 @@ body {
         font-size: 14px;
     }
     .dataInicial input {
-        width: 150px;
+        max-width: 150px;
         margin-top: 5px;
-        text-align: center;
+        text-align: right;
     }
     .dataFinal {
         text-align: center;
         margin-left: 5px;
         font-size: 14px;
     }
-    .dataFinal input {
-        width: 150px;
+    .dataFinal select {
+        max-width: 150px;
         margin-top: 5px;
         text-align: center;
     }

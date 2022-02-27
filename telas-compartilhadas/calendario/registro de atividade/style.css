@@ -93,6 +93,12 @@ body {
     justify-content: flex-end;
 }
 
+.lista_funcionarios h4 {
+    display: flex;
+    align-self: flex-end;
+    font-size: 20px;
+}
+
 .lista_funcionarios input {
     padding: 5px;
 }
@@ -147,6 +153,11 @@ body {
     margin-top: 20px;
 }
 
+
+/* input[class=horaExtra50] {
+    pointer-events: none;
+} */
+
 @media screen and (max-width: 913px) {
     .titulo {
         text-align: center;
@@ -161,6 +172,7 @@ body {
         justify-content: end;
         margin-bottom: 5px;
         font-size: 12px;
+        margin-right: 30px;
     }
     .titulos .h3_1 {
         margin-right: 10px;
@@ -177,7 +189,8 @@ body {
     .lista_funcionarios {
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: right;
+        margin-right: 30px;
     }
     .lista_funcionarios input {
         padding: 3px;
@@ -188,7 +201,9 @@ body {
     }
     .nome_funcionario {
         margin-right: 10px;
-        font-size: 18px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
     }
     .informacoesExtras {
         box-shadow: 0 0 2em rgb(12, 10, 1);

@@ -29,6 +29,7 @@ function exportar() {
             var diaFinal = new Date(Number(data[0]), Number(data[1]), 0).getDate();
             data = data.reverse().join("/");
 
+
             if (document.querySelector(".selectQuinzena").value === "primeira_quinzena") {
                 dataInicial = "01/" + data;
                 dataFinal = "15/" + data;
@@ -46,6 +47,7 @@ function exportar() {
             });
             window.open(url, "_blank");
         });
+
 }
 
 var allFuncionarios = [];

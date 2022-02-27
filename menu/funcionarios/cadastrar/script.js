@@ -1,6 +1,7 @@
 const select = document.querySelector(".select");
 const contaPagamento = document.querySelector(".contaPagamento");
 
+const pagamentoTexto = document.querySelector("#pagamentoTexto")
 const nome = document.querySelector(".nome");
 const cargo = document.querySelector(".cargo");
 const vinculo = document.querySelector(".selectVinculo");
@@ -33,6 +34,14 @@ select.addEventListener("change", (e) => {
         return;
     }
 });
+
+vinculo.addEventListener("change", () => {
+    if(vinculo.options[vinculo.selectedIndex].value == "LIDER" || vinculo.options[vinculo.selectedIndex].value == "CLT" || vinculo.options[vinculo.selectedIndex].value == "MEI" ) {
+        pagamentoTexto.innerHTML = "Quinzena";
+    } else if(vinculo.options[vinculo.selectedIndex].value == "DIARISTA" || vinculo.options[vinculo.selectedIndex].value == "FLUTUANTE") {
+        pagamentoTexto.innerHTML = "Diária";
+    }
+})
 
 cadastrarBTN.addEventListener("click", (e) => {
     if (vinculo.options[vinculo.selectedIndex].value === "LIDER") {

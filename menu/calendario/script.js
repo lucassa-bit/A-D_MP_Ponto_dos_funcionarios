@@ -39,12 +39,13 @@ async function criaDias() {
 }
 
 function novoHref(novaData) {
-    const data = mes.value.split("-");
+    var data = mes.value.split("-");
     let dia = novaData + "";
     if (Number(novaData) < 10) {
         dia = "0" + dia;
     }
 
+    document.querySelector(".month").value = "";
     window.location.href =
         "./registro de atividade/index.html?data=" +
         dia +
@@ -52,7 +53,6 @@ function novoHref(novaData) {
         data[1] +
         "/" +
         data[0];
-    console.log(novaData);
 }
 
 async function pegaStatus(diaInicial, diaFinal, mes, ano) {

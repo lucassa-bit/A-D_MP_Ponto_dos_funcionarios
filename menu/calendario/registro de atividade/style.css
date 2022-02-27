@@ -70,10 +70,11 @@ body {
     display: flex;
     justify-content: end;
     margin-bottom: 10px;
+    margin-right: -50px;
 }
 
 .titulos .h3_1 {
-    margin-right: 60px;
+    margin-right: 50px;
 }
 
 .h3_1 {
@@ -84,7 +85,7 @@ body {
 .h3_2 {
     display: flex;
     flex-direction: column;
-    margin-right: 40px;
+    margin-right: 60px;
 }
 
 .lista_funcionarios {
@@ -151,6 +152,23 @@ body {
 .informacoesExtras {
     box-shadow: 0 0 2em rgb(12, 10, 1);
     margin-top: 20px;
+}
+
+.without_ampm {
+    margin: 15px;
+}
+
+.without_ampm::-webkit-datetime-edit-ampm-field {
+    display: none;
+}
+
+input[type=time]::-webkit-clear-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    margin: -10px;
 }
 
 

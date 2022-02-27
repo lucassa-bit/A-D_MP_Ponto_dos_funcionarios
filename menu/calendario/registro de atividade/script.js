@@ -53,17 +53,16 @@ function tabelaPontos() {
                 listaFuncionarios.setAttribute("class", "lista_funcionarios");
 
                 const input50 = document.createElement("input");
-                input50.setAttribute("class", "horaExtra50");
-                input50.setAttribute("type", "text");
+                input50.setAttribute("class", "without_ampm");
+                input50.setAttribute("type", "time");
                 input50.setAttribute("placeholder", "Hora extra 50%");
-                input50.setAttribute("value", val.hora_extra_50);
+                input50.value = val.hora_extra_50;
 
                 const input100 = document.createElement("input");
-                input100.setAttribute("class", "horaExtra100");
-                input100.setAttribute("type", "text");
+                input100.setAttribute("class", "without_ampm");
+                input100.setAttribute("type", "time");
                 input100.setAttribute("placeholder", "Hora extra 100%");
-                input100.setAttribute("value", val.hora_extra_100);
-
+                input100.value = val.hora_extra_100;
                 main2.setAttribute("class", "main2");
 
                 main2.appendChild(listaFuncionarios);
@@ -199,10 +198,24 @@ function addPontos() {
     var body = [];
 
     funcionariosPontos.forEach((element) => {
+        var hora50 = element.horaExtra50Element.value.split(":");
+        var hora100 = element.horaExtra100Element.value.split(":");
+
+        if ((hora50.length > 1 && Number(hora50[1]) % 15 != 0) || (hora100.length > 1 && Number(hora100[1] % 15 != 0))) {
+            alert("Horário extra necessita ser multiplo de 15");
+            throw "Horário extra necessita ser multiplo de 15";
+        }
+
+        if(Number(hora50[0]) > 12) hora50[0] = (hora50[0] - 12) + ""; 
+        if(Number(hora100[0]) > 12) hora100[0] = (hora100[0] - 12) + "";
+
+        hora50 = hora50.join(":");
+        hora100 = hora100.join(":");
+
         body.push({
             idFuncionario: element.idFuncionario,
-            hora_extra_50: element.horaExtra50Element.value,
-            hora_extra_100: element.horaExtra100Element.value,
+            hora_extra_50: hora50,
+            hora_extra_100: hora100,
             presente: selecionados.some((id) => id == element.idFuncionario),
         });
     });

@@ -33,6 +33,7 @@ async function retornCargo() {
 
 function tabelaPontos() {
 
+
     fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
             method: "Get",
             headers: { Authorization: "Bearer " + localStorage.getItem("token") },
@@ -46,57 +47,58 @@ function tabelaPontos() {
                 main2.innerHTML += `
 
 
+
         <div class="titulos">
             <h3 class="h3_1">Hora extra<span>50%</span></h3>
             <h3 class="h3_2">Hora extra<span>100%</span></h3>
         </div>`;
 
+        const listaFuncionarios = document.createElement("ul");
+        listaFuncionarios.setAttribute("class", "lista_funcionarios");
 
-                const listaFuncionarios = document.createElement("ul");
-                listaFuncionarios.setAttribute("class", "lista_funcionarios");
+        const input50 = document.createElement("input");
+        input50.setAttribute("class", "horaExtra50");
+        input50.setAttribute("type", "text");
+        input50.setAttribute("placeholder", "Hora extra 50%");
+        input50.setAttribute("value", val.hora_extra_50);
 
-                const input50 = document.createElement("input");
-                input50.setAttribute("class", "horaExtra50");
-                input50.setAttribute("type", "text");
-                input50.setAttribute("placeholder", "Hora extra 50%");
-                input50.setAttribute("value", val.hora_extra_50);
+        const input100 = document.createElement("input");
+        input100.setAttribute("class", "horaExtra100");
+        input100.setAttribute("type", "text");
+        input100.setAttribute("placeholder", "Hora extra 100%");
+        input100.setAttribute("value", val.hora_extra_100);
 
-                const input100 = document.createElement("input");
-                input100.setAttribute("class", "horaExtra100");
-                input100.setAttribute("type", "text");
-                input100.setAttribute("placeholder", "Hora extra 100%");
-                input100.setAttribute("value", val.hora_extra_100);
+        main2.setAttribute("class", "main2");
 
-                main2.setAttribute("class", "main2");
+        main2.appendChild(listaFuncionarios);
 
-                main2.appendChild(listaFuncionarios);
+        const nomeFuncionario = document.createElement("div");
+        nomeFuncionario.setAttribute("class", "nome_funcionario");
+        nomeFuncionario.setAttribute("style", "cursor:pointer;");
 
-                const nomeFuncionario = document.createElement("div");
-                nomeFuncionario.setAttribute("class", "nome_funcionario");
-                nomeFuncionario.setAttribute("style", "cursor:pointer;");
+        const checkbox = document.createElement("input");
+        checkbox.setAttribute("class", "checkbox");
+        checkbox.setAttribute("type", "checkbox");
+        checkbox.setAttribute(
+          "onclick",
+          `onClickFuncionarioCheckbox(${val.empregado.id}, this)`
+        );
+        if (val.presente == true) {
+          selecionados.push(val.empregado.id);
+          checkbox.setAttribute("checked", "true");
+        }
 
-                const checkbox = document.createElement("input");
-                checkbox.setAttribute("class", "checkbox");
-                checkbox.setAttribute("type", "checkbox");
-                checkbox.setAttribute(
-                    "onclick",
-                    `onClickFuncionarioCheckbox(${val.empregado.id}, this)`
-                );
-                if (val.presente == true) {
-                    selecionados.push(val.empregado.id);
-                    checkbox.setAttribute("checked", "true");
-                }
+        nomeFuncionario.appendChild(checkbox);
+        listaFuncionarios.appendChild(nomeFuncionario);
 
-                nomeFuncionario.appendChild(checkbox);
-                listaFuncionarios.appendChild(nomeFuncionario);
-
-                listaFuncionarios.appendChild(input50);
-                listaFuncionarios.appendChild(input100);
-                nomeFuncionario.innerHTML +=
-                    val.empregado.nome +
-                    `
+        listaFuncionarios.appendChild(input50);
+        listaFuncionarios.appendChild(input100);
+        nomeFuncionario.innerHTML +=
+          val.empregado.nome +
+          `
     <div class="informacoesExtras" style="display: none;">
                         <h4>Cargo: ` +
+
                     val.empregado.cargo +
                     `</h4>
                     </div>`;
@@ -153,8 +155,26 @@ function tabelaPontos() {
                         }
                     }
                 });
+
         });
+      });
+
+      var nomesFuncionarios = document.querySelectorAll(".nome_funcionario");
+      for (var i = 0; i < nomesFuncionarios.length; i++) {
+        nomesFuncionarios[i].addEventListener("click", (e) => {
+          if (
+            e.target.querySelector(".informacoesExtras").style.display == "none"
+          ) {
+            e.target.querySelector(".informacoesExtras").style.display =
+              "block";
+          } else {
+            e.target.querySelector(".informacoesExtras").style.display = "none";
+          }
+        });
+      } // for
+    });
 }
+
 
 function carregamentoInicial() {
     const urlParams = new URLSearchParams(queryString);
@@ -209,7 +229,10 @@ function addPontos() {
             hora_extra_100: element.horaExtra100Element.value,
             presente: selecionados.some((id) => id == element.idFuncionario),
         });
+
     });
+  });
+
 
     fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
         method: "Post",
@@ -254,11 +277,12 @@ function addRevisao() {
     }).then(async (response) => response.json());
 }
 
+
 function onClickFuncionarioCheckbox(id, element) {
-    console.log(element.checked);
-    if (element.checked) {
-        selecionados.push(id);
-    } else {
-        selecionados = selecionados.filter((e) => e !== id);
-    }
+  console.log(element.checked);
+  if (element.checked) {
+    selecionados.push(id);
+  } else {
+    selecionados = selecionados.filter((e) => e !== id);
+  }
 }

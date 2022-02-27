@@ -51,4 +51,5 @@ botao.addEventListener('click', e => {
                 }
             })
         )
+        .catch((e) => alert(e))
 });

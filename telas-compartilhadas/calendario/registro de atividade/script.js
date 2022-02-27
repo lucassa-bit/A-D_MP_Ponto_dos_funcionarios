@@ -6,6 +6,27 @@ var funcionariosPontos = [];
 var selecionados = [];
 carregamentoInicial();
 
+async function retornCargo() {
+  fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
+    method: "Get",
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  })
+    .then((response) => response.json())
+    .then((usuario) => {
+      var cargo = "";
+      if (usuario.cargo === "ADMIN") {
+        cargo = "ADMIN";
+      } else if (usuario.cargo === "LIDER") {
+        cargo = "LIDER";
+      } else if (usuario.cargo === "APONTADOR") {
+        cargo = "APONTADOR";
+      }
+    });
+}
+
 function tabelaPontos() {
   fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
     method: "Get",
@@ -14,16 +35,15 @@ function tabelaPontos() {
     .then((response) => response.json())
     .then((funcionarios) => {
       document.querySelector(".innerHTML").innerHTML = "";
+
       funcionarios.map((val) => {
         const main2 = document.createElement("div");
         main2.setAttribute("class", "main2");
         main2.innerHTML += `
-
         <div class="titulos">
             <h3 class="h3_1">Hora extra<span>50%</span></h3>
             <h3 class="h3_2">Hora extra<span>100%</span></h3>
         </div>`;
-
         const listaFuncionarios = document.createElement("ul");
         listaFuncionarios.setAttribute("class", "lista_funcionarios");
 
@@ -114,15 +134,14 @@ fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
       window.location.href = "./APONTADOR/index.html";
     }
 
-    const aprovarCheckbox = document.querySelector(".aprovarCheckbox");
+    /*  const aprovarCheckbox = document.querySelector(".aprovarCheckbox");
     const revisarCheckbox = document.querySelector(".revisarCheckbox");
     const testes = document.querySelector(".horaExtra50");
-    console.log(testes.value);
+    console.log(testes);
     const input100 = document.querySelectorAll(".horaExtra100");
 
     if (usuario.cargo === "ADMIN") {
-      testes.setAttribute("disabled", "true");
-      input100.setAttribute("disabled", "true");
+      document.querySelector(".horaExtra50").readOnly = "false";
     } else if (usuario.cargo === "LIDER") {
       //so pode botar as horas extras
       aprovarCheckbox.setAttribute("disabled", "true");
@@ -131,7 +150,7 @@ fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
       //so pode clicar em aprovar ou revisar
       testes.setAttribute("disabled", "true");
       input100.setAttribute("disabled", "true");
-    }
+    } */
   });
 
 function carregamentoInicial() {

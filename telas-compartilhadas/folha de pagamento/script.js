@@ -34,6 +34,7 @@ function exportar() {
   var url = `https://flash-point-app.herokuapp.com/api/relatorio`;
   url += `?data_inicial=${dataInicialConverted}`;
   url += `&data_final=${dataInicialConverted}`;
+  // primeira - segunda
   url += `&authentication=${token}`;
   selectedIds.forEach((id) => {
     url += `&ids=${id}`;

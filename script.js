@@ -32,7 +32,7 @@ botao.addEventListener('click', e => {
         })
         .then(token => localStorage.setItem("token", token))
         .then(async() => {
-            window.location.href = './menu';
+            window.location.href = './menu/index.html';
         }
         )
         .catch((e) => alert(e))

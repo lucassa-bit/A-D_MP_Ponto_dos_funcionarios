@@ -46,7 +46,7 @@ folhaBTN.addEventListener("click", (e) => {
 });
 
 gestaoBTN.addEventListener("click", (e) => {
-  window.location.href = /gestao_fiscal";
+  window.location.href = "gestao_fiscal";
 });
 
 sairBTN.addEventListener("click", (e) => {

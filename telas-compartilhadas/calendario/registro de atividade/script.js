@@ -240,7 +240,7 @@ function addRevisao() {
         status = "CADASTRADO";
     }
 
-    fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
+    fetch("https://flash-point-app.herokuapp.com/api/revisao_ponto", {
         method: "Post",
         body: JSON.stringify({
             data: sessionStorage.getItem("DATA"),

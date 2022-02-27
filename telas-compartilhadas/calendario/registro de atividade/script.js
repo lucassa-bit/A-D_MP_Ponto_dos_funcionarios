@@ -32,19 +32,17 @@ async function retornCargo() {
 }
 
 function tabelaPontos() {
-
-
-    fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
-            method: "Get",
-            headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-        })
-        .then((response) => response.json())
-        .then(async(funcionarios) => {
-            document.querySelector(".innerHTML").innerHTML = "";
-            funcionarios.map((val) => {
-                const main2 = document.createElement("div");
-                main2.setAttribute("class", "main2");
-                main2.innerHTML += `
+  fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
+    method: "Get",
+    headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+  })
+    .then((response) => response.json())
+    .then(async (funcionarios) => {
+      document.querySelector(".innerHTML").innerHTML = "";
+      funcionarios.map((val) => {
+        const main2 = document.createElement("div");
+        main2.setAttribute("class", "main2");
+        main2.innerHTML += `
 
 
 
@@ -96,66 +94,17 @@ function tabelaPontos() {
         nomeFuncionario.innerHTML +=
           val.empregado.nome +
           `
-    <div class="informacoesExtras" style="display: none;">
+            <div class="informacoesExtras" style="display: none;">
                         <h4>Cargo: ` +
-
-                    val.empregado.cargo +
-                    `</h4>
+          val.empregado.cargo +
+          `</h4>
                     </div>`;
-                document.querySelector(".innerHTML").appendChild(main2);
-                funcionariosPontos.push({
-                    idFuncionario: val.empregado.id,
-                    horaExtra50Element: input50,
-                    horaExtra100Element: input100,
-                    checkboxElement: checkbox,
-                });
-            });
-
-            var nomesFuncionarios = document.querySelectorAll(".nome_funcionario");
-            for (var i = 0; i < nomesFuncionarios.length; i++) {
-                nomesFuncionarios[i].addEventListener("click", (e) => {
-                    if (
-                        e.target.querySelector(".informacoesExtras").style.display == "none"
-                    ) {
-                        e.target.querySelector(".informacoesExtras").style.display =
-                            "block";
-                    } else {
-                        e.target.querySelector(".informacoesExtras").style.display = "none";
-                    }
-                });
-            } // for
-        })
-        .then(async function() {
-            fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
-                    method: "Get",
-                    headers: {
-                        Accept: "application/json",
-                        Authorization: "Bearer " + localStorage.getItem("token"),
-                    },
-                })
-                .then((response) => response.json())
-                .then(async(usuario) => {
-                    sessionStorage.setItem("ACESSO", usuario.cargo);
-                    const aprovarCheckbox = document.querySelector(".aprovarCheckbox");
-                    const revisarCheckbox = document.querySelector(".revisarCheckbox");
-                    const presente = document.querySelectorAll(".checkbox");
-                    const input50 = document.querySelectorAll(".horaExtra50");
-                    const input100 = document.querySelectorAll(".horaExtra100");
-                    const texto = document.querySelector("#texto");
-
-                    if (usuario.cargo === "LIDER") {
-                        aprovarCheckbox.setAttribute("disabled", "true");
-                        revisarCheckbox.setAttribute("disabled", "true");
-                        texto.setAttribute("disabled", "true");
-                    } else if (usuario.cargo === "APONTADOR") {
-                        for (let index = 0; index < input50.length; index++) {
-                            presente.item(index).setAttribute("disabled", true);
-                            input50.item(index).setAttribute("disabled", "true");
-                            input100.item(index).setAttribute("disabled", "true");
-                        }
-                    }
-                });
-
+        document.querySelector(".innerHTML").appendChild(main2);
+        funcionariosPontos.push({
+          idFuncionario: val.empregado.id,
+          horaExtra50Element: input50,
+          horaExtra100Element: input100,
+          checkboxElement: checkbox,
         });
       });
 
@@ -172,117 +121,166 @@ function tabelaPontos() {
           }
         });
       } // for
+    })
+    .then(async function () {
+      fetch("https://flash-point-app.herokuapp.com/api/usuario/me", {
+        method: "Get",
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+        .then((response) => response.json())
+        .then(async (usuario) => {
+          sessionStorage.setItem("ACESSO", usuario.cargo);
+          const aprovarCheckbox = document.querySelector(".aprovarCheckbox");
+          const revisarCheckbox = document.querySelector(".revisarCheckbox");
+          const presente = document.querySelectorAll(".checkbox");
+          const input50 = document.querySelectorAll(".horaExtra50");
+          const input100 = document.querySelectorAll(".horaExtra100");
+          const texto = document.querySelector("#texto");
+
+          if (usuario.cargo === "LIDER") {
+            aprovarCheckbox.setAttribute("disabled", "true");
+            revisarCheckbox.setAttribute("disabled", "true");
+            texto.setAttribute("disabled", "true");
+          } else if (usuario.cargo === "APONTADOR") {
+            for (let index = 0; index < input50.length; index++) {
+              presente.item(index).setAttribute("disabled", true);
+              input50.item(index).setAttribute("disabled", "true");
+              input100.item(index).setAttribute("disabled", "true");
+            }
+          }
+        });
     });
-}
 
+  var nomesFuncionarios = document.querySelectorAll(".nome_funcionario");
+  for (var i = 0; i < nomesFuncionarios.length; i++) {
+    nomesFuncionarios[i].addEventListener("click", (e) => {
+      if (
+        e.target.querySelector(".informacoesExtras").style.display == "none"
+      ) {
+        e.target.querySelector(".informacoesExtras").style.display = "block";
+      } else {
+        e.target.querySelector(".informacoesExtras").style.display = "none";
+      }
+    });
+  } // for
 
-function carregamentoInicial() {
+  function carregamentoInicial() {
     const urlParams = new URLSearchParams(queryString);
     if (urlParams.has("data")) {
-        data = urlParams.get("data");
-        dataTitulo.innerHTML = ` <h2>A data selecionada foi: ` + data + `</h2>`;
-        sessionStorage.setItem("DATA", data);
+      data = urlParams.get("data");
+      dataTitulo.innerHTML = ` <h2>A data selecionada foi: ` + data + `</h2>`;
+      sessionStorage.setItem("DATA", data);
 
-        fetch("https://flash-point-app.herokuapp.com/api/revisao_ponto?data=" + data, {
-                method: "Get",
-                headers: {
-                    Accept: "application/json",
-                    Authorization: "Bearer " + localStorage.getItem("token"),
-                },
-            })
-            .then((e) => e.json())
-            .then(async(object) => {
-                if (object.status == "APROVADO") {
-                    document.querySelector(".aprovarCheckbox").setAttribute("checked", "true");
-                } else if (object.status == "REVISAO") {
-                    document.querySelector(".revisarCheckbox").setAttribute("checked", "true");
-                }
-                texto.value = object.observacao;
-            });
+      fetch(
+        "https://flash-point-app.herokuapp.com/api/revisao_ponto?data=" + data,
+        {
+          method: "Get",
+          headers: {
+            Accept: "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      )
+        .then((e) => e.json())
+        .then(async (object) => {
+          if (object.status == "APROVADO") {
+            document
+              .querySelector(".aprovarCheckbox")
+              .setAttribute("checked", "true");
+          } else if (object.status == "REVISAO") {
+            document
+              .querySelector(".revisarCheckbox")
+              .setAttribute("checked", "true");
+          }
+          texto.value = object.observacao;
+        });
 
-        tabelaPontos();
+      tabelaPontos();
     } else {
-        window.location.href = "../index.html";
+      window.location.href = "../index.html";
     }
-}
+  }
 
-salvarBTN.addEventListener("click", (e) => {
+  salvarBTN.addEventListener("click", (e) => {
     if (sessionStorage.getItem("ACESSO") == "LIDER") {
-        addPontos();
-        addRevisao();
+      addPontos();
+      addRevisao();
     } else if (sessionStorage.getItem("ACESSO") == "APONTADOR") {
-        addRevisao();
+      addRevisao();
     } else if (sessionStorage.getItem("ACESSO") == "ADMIN") {
-        addPontos();
-        addRevisao();
+      addPontos();
+      addRevisao();
     }
+  });
 
-});
-
-function addPontos() {
+  function addPontos() {
     var body = [];
 
     funcionariosPontos.forEach((element) => {
-        body.push({
-            idFuncionario: element.idFuncionario,
-            hora_extra_50: element.horaExtra50Element.value,
-            hora_extra_100: element.horaExtra100Element.value,
-            presente: selecionados.some((id) => id == element.idFuncionario),
-        });
-
+      body.push({
+        idFuncionario: element.idFuncionario,
+        hora_extra_50: element.horaExtra50Element.value,
+        hora_extra_100: element.horaExtra100Element.value,
+        presente: selecionados.some((id) => id == element.idFuncionario),
+      });
     });
-  });
+  }
 
+  fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
+    method: "Post",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  }).then((response) => response);
 
-    fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
-        method: "Post",
-        body: JSON.stringify(body),
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-    }).then((response) => response);
-}
-
-function addRevisao() {
+  function addRevisao() {
     var checkAprovado = document.querySelector(".aprovarCheckbox").checked;
     var checkRevisao = document.querySelector(".revisarCheckbox").checked;
     var status = "";
 
-    if (sessionStorage.getItem("ACESSO") == "APONTADOR" && (!checkAprovado && !checkRevisao)) {
-        const msg = "Selecionar uma das duas opções para salvar";
-        alert(msg);
-        throw "Selecionar uma das duas opções para salvar";
+    if (
+      sessionStorage.getItem("ACESSO") == "APONTADOR" &&
+      !checkAprovado &&
+      !checkRevisao
+    ) {
+      const msg = "Selecionar uma das duas opções para salvar";
+      alert(msg);
+      throw "Selecionar uma das duas opções para salvar";
     }
 
     if (checkAprovado) {
-        status = "APROVADO";
-    } else if(checkRevisao) {
-        status = "REVISAO";
+      status = "APROVADO";
+    } else if (checkRevisao) {
+      status = "REVISAO";
     } else {
-        status = "CADASTRADO";
+      status = "CADASTRADO";
     }
 
     fetch("https://flash-point-app.herokuapp.com/api/ponto?data=" + data, {
-        method: "Post",
-        body: JSON.stringify({
-            data: sessionStorage.getItem("DATA"),
-            status: status,
-            observacao: document.querySelector("#texto").value
-        }),
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+      method: "Post",
+      body: JSON.stringify({
+        data: sessionStorage.getItem("DATA"),
+        status: status,
+        observacao: document.querySelector("#texto").value,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
     }).then(async (response) => response.json());
-}
+  }
 
-
-function onClickFuncionarioCheckbox(id, element) {
-  console.log(element.checked);
-  if (element.checked) {
-    selecionados.push(id);
-  } else {
-    selecionados = selecionados.filter((e) => e !== id);
+  function onClickFuncionarioCheckbox(id, element) {
+    console.log(element.checked);
+    if (element.checked) {
+      selecionados.push(id);
+    } else {
+      selecionados = selecionados.filter((e) => e !== id);
+    }
   }
 }

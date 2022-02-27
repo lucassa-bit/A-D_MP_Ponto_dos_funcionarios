@@ -48,7 +48,7 @@ function redirecionarParaPonto(novaData) {
     }
 
     window.location.href =
-        "./registro_ponto/index.html?data=" +
+        "./calendario/registro_ponto/index.html?data=" +
         dia +
         "/" +
         data[1] +

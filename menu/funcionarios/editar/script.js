@@ -17,16 +17,19 @@ const operacao = document.querySelector(".operacao");
 
 const cadastrarBTN = document.querySelector(".cadastrarBTN");
 
-window.addEventListener('load', () => {
-    var id = sessionStorage.getItem('ID');
+window.addEventListener("load", () => {
+    var id = sessionStorage.getItem("ID");
 
-    fetch("https://aed-cargo-ponto.herokuapp.com/api/funcionario/find?idEmpregado=" + id, {
-            method: "Get",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-        })
+    fetch(
+            "https://aed-ponto.herokuapp.com/api/funcionario/find?idEmpregado=" +
+            id, {
+                method: "Get",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            }
+        )
         .then(async(e) => e.json())
         .then((objeto) => {
             const vinculo = document.getElementsByClassName("selectVinculo");
@@ -45,7 +48,6 @@ window.addEventListener('load', () => {
             const contaPagamento = document.querySelector(".contaPagamento");
             const pagamentoPix = document.querySelector("#pagamentoPix");
 
-
             if (objeto.tipoPagamento === "CONTA") {
                 tipoPagamento.item(0).value = "CONTA";
                 contaPagamento.setAttribute("style", "display: flex");
@@ -54,16 +56,19 @@ window.addEventListener('load', () => {
                 agencia.value = objeto.agencia;
                 conta.value = objeto.conta;
                 operacao.value = objeto.operacao;
-            }
-            else if (objeto.tipoPagamento === "PIX") {
+            } else if (objeto.tipoPagamento === "PIX") {
                 tipoPagamento.item(0).value = "PIX";
                 contaPagamento.setAttribute("style", "display:none");
                 pagamentoPix.setAttribute("style", "display: flex");
                 pix.value = objeto.pix;
             }
         })
-        .catch((e) => alert(e))
-})
+        .then(() => {
+            changeValues();
+        })
+        .catch((e) => alert(e));
+
+});
 
 select.addEventListener("change", (e) => {
     if (e.target.value === "CONTA") {
@@ -82,33 +87,67 @@ select.addEventListener("change", (e) => {
     }
 });
 
+function changeValues() {
+    if (vinculo.options[vinculo.selectedIndex].value == "LIDER" || vinculo.options[vinculo.selectedIndex].value == "CLT" || vinculo.options[vinculo.selectedIndex].value == "MEI") {
+        pagamentoTexto.innerHTML = "Quinzena";
+    } else if (vinculo.options[vinculo.selectedIndex].value == "DIARISTA" || vinculo.options[vinculo.selectedIndex].value == "FLUTUANTE") {
+        pagamentoTexto.innerHTML = "Diária";
+    }
+}
+
+vinculo.addEventListener("change", () => {
+    changeValues();
+})
+
+vinculo.addEventListener("change", changeValues());
+
 cadastrarBTN.addEventListener("click", (e) => {
-    fetch("https://aed-cargo-ponto.herokuapp.com/api/funcionario/edit", {
-            method: "Post",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': 'Bearer ' + localStorage.getItem("token")
-            },
-            body: JSON.stringify({
-                id: sessionStorage.getItem('ID'),
-                nome: nome.value,
-                cargo: cargo.value,
-                vinculo: document.getElementsByClassName("selectVinculo").item(0).value,
-                valor: valor.value,
-                rg: RG.value,
-                cpf: CPF.value,
-                celular: celular.value,
-                pis: pis.value,
-                pagamento:  document.getElementsByClassName("select").item(0).value,
-                pix: pix.value,
-                banco: banco.value,
-                agencia: agencia.value,
-                conta: conta.value,
-                operacao: operacao.value,
-            })
-        })
-        .then(async () => {
-            sessionStorage.removeItem("ID");
-            window.location.href = './../index.html';
-        });
+    Confirm.open({
+        title: 'Editar empregado',
+        message: 'Tem certeza que você deseja editar esse empregado?',
+        okText: 'Sim',
+        cancelText: 'Agora não',
+        onOk: () => {
+            fetch("https://aed-ponto.herokuapp.com/api/funcionario/edit", {
+                method: "Post",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+                body: JSON.stringify({
+                    id: sessionStorage.getItem("ID"),
+                    nome: nome.value,
+                    cargo: cargo.value,
+                    vinculo: document.getElementsByClassName("selectVinculo").item(0).value,
+                    valor: valor.value,
+                    rg: RG.value,
+                    cpf: CPF.value,
+                    celular: celular.value,
+                    pis: pis.value,
+                    pagamento: document.getElementsByClassName("select").item(0).value,
+                    pix: pix.value,
+                    banco: banco.value,
+                    agencia: agencia.value,
+                    conta: conta.value,
+                    operacao: operacao.value,
+                }),
+            }).then(async() => {
+                sessionStorage.removeItem("ID");
+                window.location.href = "./../index.html";
+            });
+        },
+        onCancel: () => {}
+    });
 });
+
+
+function retornarError(msg) {
+    Confirm.open({
+        title: 'Error Usuário',
+        message: 'Usuário que será editado retornou o seguinte error: ' + msg,
+        okText: '',
+        cancelText: 'OK',
+        onOk: () => {},
+        onCancel: () => {}
+    });
+}

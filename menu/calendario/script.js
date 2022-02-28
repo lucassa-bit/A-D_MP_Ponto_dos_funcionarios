@@ -41,20 +41,20 @@ async function criaDias() {
 }
 
 function novoHref(novaData) {
-  const data = mes.value.split("-");
-  let dia = novaData + "";
-  if (Number(novaData) < 10) {
-    dia = "0" + dia;
-  }
+    var data = mes.value.split("-");
+    let dia = novaData + "";
+    if (Number(novaData) < 10) {
+        dia = "0" + dia;
+    }
 
-  window.location.href =
-    "./registro de atividade/index.html?data=" +
-    dia +
-    "/" +
-    data[1] +
-    "/" +
-    data[0];
-  console.log(novaData);
+    document.querySelector(".month").value = ""; 
+    window.location.href =
+        "./registro_pontos/index.html?data=" +
+        dia +
+        "/" +
+        data[1] +
+        "/" +
+        data[0];
 }
 
 async function pegaStatus(diaInicial, diaFinal, mes, ano) {

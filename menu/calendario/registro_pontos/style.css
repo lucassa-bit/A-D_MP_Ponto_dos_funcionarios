@@ -70,11 +70,11 @@ body {
     display: flex;
     justify-content: end;
     margin-bottom: 10px;
-    margin-right: -50px;
+    margin-right: 0px;
 }
 
 .titulos .h3_1 {
-    margin-right: 50px;
+    margin-right: 90px;
 }
 
 .h3_1 {
@@ -89,9 +89,7 @@ body {
 }
 
 .lista_funcionarios {
-    display: flex;
     align-items: center;
-    justify-content: flex-end;
 }
 
 .lista_funcionarios h4 {
@@ -106,12 +104,14 @@ body {
 
 .checkbox {
     margin-right: 10px;
-    transform: scale(1.5);
+    transform: scale(1);
 }
 
 .nome_funcionario {
-    margin-right: 10px;
     font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .resultado {
@@ -154,21 +154,12 @@ body {
     margin-top: 20px;
 }
 
-.without_ampm {
+.valor50 {
     margin: 15px;
 }
 
-.without_ampm::-webkit-datetime-edit-ampm-field {
-    display: none;
-}
-
-input[type=time]::-webkit-clear-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -o-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    margin: -10px;
+.valor100 {
+    margin: 15px;
 }
 
 

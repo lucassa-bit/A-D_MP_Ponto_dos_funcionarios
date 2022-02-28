@@ -47,9 +47,9 @@ function novoHref(novaData) {
         dia = "0" + dia;
     }
 
-    document.querySelector(".month").value = "";
+    document.querySelector(".month").value = ""; 
     window.location.href =
-        "./registro de atividade/index.html?data=" +
+        "./registro_pontos/index.html?data=" +
         dia +
         "/" +
         data[1] +
